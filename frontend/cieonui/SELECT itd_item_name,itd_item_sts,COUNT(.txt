@@ -1,0 +1,5 @@
+SELECT itd_item_name,itd_item_sts,COUNT(itd_item_name) FROM `tb_item_detail` GROUP BY itd_item_name,itd_item_sts
+
+
+
+SELECT itd_item_name,itd_item_sts,COUNT(itd_item_name) FROM `tb_item_detail` WHERE itd_item_sts = 'a' GROUP BY itd_item_name,itd_item_sts
