@@ -64,14 +64,14 @@ input[type=number] {
 					</div>
 					<?php }else{} ?>
 					<div class="wrap-input100 validate-input" >
-						<input class="input100" type="text" required="required" name="firstname"placeholder=" Firstname">
+						<input class="input100" type="text" required="required" name="firstname"placeholder=" Firstname" minlength="1" maxlength="25">
 						<span class="focus-input100" ></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" >
 						<span class="btn-show-pass">
 						</span>
-						<input class="input100" type="text" required="required" name="surname" placeholder=" Surname">
+						<input class="input100" type="text" required="required" name="surname" placeholder=" Surname" minlength="1" maxlength="25">
 						<span class="focus-input100"></span>
 					</div>
 
