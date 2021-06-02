@@ -94,7 +94,7 @@
                 $teacher_id = $_POST['user_id'];
                 $teacher_firstname = $_POST['user_firstname'];
                 $teacher_surname = $_POST['user_surname'];
-                $teacher_email = $_POST['user_firstname'].'.'.substr($teacher_surname,0,2)."@kmitl.ac.th";
+                $teacher_email = strtolower($_POST['user_firstname'].'.'.substr($teacher_surname,0,2)."@kmitl.ac.th");
                 // $teacher_position = $_POST['teacher_position'];
                 $teacher_tel = $_POST['user_tel'];
                 // $teacher_status = $_POST['teacher_status'];
@@ -152,10 +152,10 @@ function update_email(){
     
     if(document.getElementById('firstname').value)
     {
-        var first_name = document.getElementById('firstname').value;
+        var first_name = document.getElementById('firstname').value.toLowerCase();;
         if(document.getElementById('surname').value)
         {
-            var surname = document.getElementById('surname').value;
+            var surname = document.getElementById('surname').value.toLowerCase();;
             document.getElementById('email').value = first_name+'.'+surname.substring(0,2);
         }
     }

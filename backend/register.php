@@ -57,12 +57,12 @@ input[type=number] {
 						<img src ="upload/cie icon.jpg" width="110 px" height="110 px"/><br><br>
 						CIEON INVENTORY
 					</span>
+					<!-- STUDENT SECTION-->
 					<?php if($_GET['po'] == 's' ){ ?>
 					<div class="wrap-input100 validate-input" data-validate = "Student or Teacher number ">
-						<input class="input100" type="number" required="required" name="number" placeholder="Id number" min="1" max="9999999999">
+						<input id="number" class="input100" onchange="update_number()" type="number" required="required" name="number" placeholder="Id number" min="1" max="9999999999">
 						<span class="focus-input100" ></span>
 					</div>
-					<?php }else{} ?>
 					<div class="wrap-input100 validate-input" >
 						<input class="input100" type="text" required="required" name="firstname"placeholder=" Firstname" minlength="1" maxlength="25">
 						<span class="focus-input100" ></span>
@@ -74,6 +74,27 @@ input[type=number] {
 						<input class="input100" type="text" required="required" name="surname" placeholder=" Surname" minlength="1" maxlength="25">
 						<span class="focus-input100"></span>
 					</div>
+					<!-- TEACHER SECTION -->
+					<?php }else{ ?>
+					<div class="wrap-input100 validate-input" >
+						<input id="firstname" class="input100" type="text" onchange="update_email()" required="required" name="firstname"placeholder=" Firstname" minlength="1" maxlength="25">
+						<span class="focus-input100" ></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" >
+						<span class="btn-show-pass">
+						</span>
+						<input id="surname" class="input100" type="text" onchange="update_email()" required="required" name="surname" placeholder=" Surname" minlength="1" maxlength="25">
+						<span class="focus-input100"></span>
+					</div>
+					<?} ?>
+					
+
+					<div class="wrap-input100 " >
+						<input id="email" class="input100" type="text" disabled="disabled" name="email" placeholder="Email">
+						<span class="focus-input100"></span>
+					</div>
+
 
 					<div class="wrap-input100 validate-input" data-validate="Enter telephone number">
 						<span class="btn-show-pass">
@@ -88,15 +109,6 @@ input[type=number] {
 						</span>
 					</div>
 
-					<!-- <div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" name="test">
-								test
-							</button> -->
-							
-						<!-- </div>
-					</div> -->
 					<?php if($_GET['po'] == 's' ){ ?>
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
@@ -171,7 +183,7 @@ input[type=number] {
                     $teacher_firstname = $_POST['firstname'];
                     $teacher_surname= $_POST['surname'];
 					$su2 = substr($teacher_surname,0,2);
-                    $teacher_email = $_POST['firstname'].'.'.$su2.'@kmitl.ac.th';
+                    $teacher_email = strtolower($_POST['firstname'].'.'.$su2.'@kmitl.ac.th');
                     $teacher_tel = $_POST['telephone'];
 					$password = $_POST['password'];
 					$salt = generate_password();
@@ -239,6 +251,32 @@ else
  document.getElementById("phone").value = phoneInput.getNumber();
  return true;
 }
+}
+
+
+function update_number(){
+    
+    if(document.getElementById('number').value)
+	{
+		var number = document.getElementById('number').value;
+		document.getElementById('email').value = number+'@kmitl.ac.th';
+        
+    }
+}
+function update_email(){
+    
+    if(document.getElementById('firstname').value)
+    {
+        var first_name = document.getElementById('firstname').value.toLowerCase();
+        if(document.getElementById('surname').value)
+        {
+            var surname = document.getElementById('surname').value.toLowerCase();
+            document.getElementById('email').value = first_name+'.'+surname.substring(0,2)+"@kmitl.ac.th";
+        }
+    }
+    
+   
+    
 }
 </script>
 </body>
