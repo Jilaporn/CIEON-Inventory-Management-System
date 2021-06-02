@@ -182,9 +182,9 @@
                         $allavalible = $ith_avalible - $num;
                         // echo $alllimit ;
                         if ( $num > $ith_avalible) {
-                            echo $cls_conn->show_message('Amount overdue');
+                            echo $cls_conn->show_message('Reserve over amount');
                         } elseif ($num > $count) {
-                            echo $cls_conn->show_message('Overbooked');
+                            echo $cls_conn->show_message('Reserve over amount');
                         } elseif (0 > $alllimit) {
                             echo $cls_conn->show_message('Reseve over limit');
                         } else {
