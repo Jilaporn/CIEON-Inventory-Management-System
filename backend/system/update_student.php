@@ -91,9 +91,9 @@
                         <div class="form-group">
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" >Edit Status</label>
                                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <select name="user_status"  class="form-control col-md-7 col-xs-12" required="required">
+                                                    <select name="user_sts"  class="form-control col-md-7 col-xs-12" required="required">
                                                     <!--for insert data -->
-                                                         <option selected value="<?=$user_status;?>"><?=($user_status=='n')? 'Normal':'Penalty';?></option>
+                                                         <option selected value="<?=$user_sts;?>"><?=($user_sts=='n')? 'Normal':'Penalty';?></option>
                                                        
 <!-- // code for get data from other database -->
                                                        
@@ -173,7 +173,7 @@
                             // $user_email=$_POST['user_email'];
                             $user_tel=$_POST['user_tel'];
                             $user_limit=$_POST['user_limit'];
-                            $user_status=$_POST['user_status'];
+                            $user_sts=$_POST['user_sts'];
                             $user_password=$_POST['user_password']; 
                             //IF PASSWORD CHANGE
                             // if($_POST['user_password'])
@@ -205,7 +205,7 @@
                             // $sql.=" ,user_email='$user_email'";
                             $sql.=" ,user_tel='$user_tel'";
                             $sql.=" ,user_limit='$user_limit'";
-                            $sql.=" ,user_sts='$user_status'";
+                            $sql.=" ,user_sts='$user_sts'";
                             if($_POST['user_password'])
                             {
                                 $salt = generate_password();

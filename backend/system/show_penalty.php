@@ -38,17 +38,17 @@
                              INNER JOIN tb_user on tb_user.user_id = tb_activity.user_id
                              where tb_activity.user_sts = 'p' AND tb_activity.act_type != 'b' AND tb_activity.act_type != 'rs' ";
                              $result=$cls_conn->select_base($sql);
-                        function show_item_sts($sts)
-                        {
-                            switch($sts){
-                                case 'bk':
-                                    return 'Broken';
-                                case 'l':
-                                    return 'Lost';
-                                case 'r':
-                                    return 'Late';
-                            }
-                        }
+                             function show_item_sts($sts)
+                             {
+                                switch($sts){
+                                    case 'bk':
+                                        return 'Broken';
+                                    case 'l':
+                                        return 'Lost';
+                                    case 'r':
+                                        return 'Late';
+                                }
+                             }
                              while($row=mysqli_fetch_array($result))
                              {
                                  ?>

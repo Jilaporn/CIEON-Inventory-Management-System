@@ -29,14 +29,14 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="firstname">Firstname<span class="required">:</span> </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" onchange="update_email()" id="firstname" name="user_firstname" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" onchange="update_email()" id="firstname" name="user_firstname" required="required" class="form-control col-md-7 col-xs-12" minlength="1" maxlength="25">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="surname">Surname<span class="required">:</span> </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input type="text" onchange="update_email()" id="surname" name="user_surname" required="required" class="form-control col-md-7 col-xs-12">
+                                <input type="text" onchange="update_email()" id="surname" name="user_surname" required="required" class="form-control col-md-7 col-xs-12" minlength="1" maxlength="25">
                             </div>
                         </div>
                         <div class="form-group">

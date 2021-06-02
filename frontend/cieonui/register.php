@@ -57,40 +57,33 @@ input[type=number] {
 						<img src ="upload/cie icon.jpg" width="110 px" height="110 px"/><br><br>
 						CIEON INVENTORY
 					</span>
-
+					<?php if($_GET['po'] == 's' ){ ?>
 					<div class="wrap-input100 validate-input" data-validate = "Student or Teacher number ">
-						<input class="input100" type="number" name="number"placeholder="Id number" min="1" max="9999999999">
+						<input class="input100" type="number" required="required" name="number" placeholder="Id number" min="1" max="9999999999">
 						<span class="focus-input100" ></span>
 					</div>
-
+					<?php }else{} ?>
 					<div class="wrap-input100 validate-input" >
-						<input class="input100" type="text" name="firstname"placeholder=" Firstname" minlength="1" maxlength="25">
+						<input class="input100" type="text" required="required" name="firstname"placeholder=" Firstname" minlength="1" maxlength="25">
 						<span class="focus-input100" ></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" >
 						<span class="btn-show-pass">
 						</span>
-						<input class="input100" type="text" name="surname" placeholder=" Surname" minlength="1" maxlength="25">
-						<span class="focus-input100"></span>
-					</div>
-
-					<div class="wrap-input100" data-validate="Enter email">
-			
-						<input class="input100" style="width:175px;display:inline" type="text" name="email" placeholder=" Email"minlength="6" maxlength="20">
-							<span class="input-group-text" id="basic-addon2">@kmitl.ac.th</span>
+						<input class="input100" type="text" required="required" name="surname" placeholder=" Surname" minlength="1" maxlength="25">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter telephone number">
 						<span class="btn-show-pass">
 						</span>
-						<input id="phone" class="input100" type="text" name="telephone" placeholder=" Telephone number">
+						<input id="phone" class="input100" required="required" type="text" name="telephone" placeholder=" Telephone number">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="password" placeholder=" Password" minlength="6" maxlength="20">
+						<input class="input100" type="password" required="required" name="password" placeholder=" Password" minlength="6" maxlength="20">
 						<span class="btn-show-pass">
 						</span>
 					</div>
@@ -104,15 +97,16 @@ input[type=number] {
 							
 						<!-- </div>
 					</div> -->
+					<?php if($_GET['po'] == 's' ){ ?>
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn" name="student">
 								Student
 							</button>
-							
 						</div>
 					</div>
+					<?php }else{?>
 					
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
@@ -120,9 +114,9 @@ input[type=number] {
 							<button class="login100-form-btn" name="teacher">
 								Teacher
 							</button>
-							
 						</div>
 					</div>
+					<?php }?>
 
 					
 				</form>
@@ -149,7 +143,7 @@ input[type=number] {
                     $student_id = $_POST['number'];
                     $student_firstname = $_POST['firstname'];
                     $student_surname= $_POST['surname'];
-                    $student_email = $_POST['email'].'@kmitl.ac.th';
+                    $student_email = $_POST['number'].'@kmitl.ac.th';
                     $student_tel = $_POST['telephone'];
 					$password = $_POST['password'];
 					$salt = generate_password();
@@ -160,13 +154,13 @@ input[type=number] {
 
 // values = recieve data from input
 // insert = insert to database table
-                    $sql = " insert into tb_user(user_id,user_firstname,user_surname,user_email,user_tel,user_position,user_sts,user_password,user_limit,user_br_day,salt)";
+                    $sql = " insert into tb_user(user_no,user_firstname,user_surname,user_email,user_tel,user_position,user_sts,user_password,user_limit,user_br_day,salt)";
                     $sql .= " values ('$student_id','$student_firstname','$student_surname','$student_email','$student_tel','2','n','$student_password','10','7','$salt')";
 
 
                     if ($cls_conn->write_base($sql) == true) {
                         echo $cls_conn->show_message('Success');
-                        echo $cls_conn->goto_page(1, 'index.php');
+                        echo $cls_conn->goto_page(1, '../frontend/cieonui/index.php');
                     } else {
                         echo $cls_conn->show_message('Unsuccess');
                     }
@@ -174,10 +168,10 @@ input[type=number] {
                 ?> 
                 <?php
                 if (isset($_POST['teacher'])) {
-                    $teacher_id = $_POST['number'];
                     $teacher_firstname = $_POST['firstname'];
                     $teacher_surname= $_POST['surname'];
-                    $teacher_email = $_POST['email'].'@kmitl.ac.th';
+					$su2 = substr($teacher_surname,0,2);
+                    $teacher_email = $_POST['firstname'].'.'.$su2.'@kmitl.ac.th';
                     $teacher_tel = $_POST['telephone'];
 					$password = $_POST['password'];
 					$salt = generate_password();
@@ -188,13 +182,13 @@ input[type=number] {
 
 // values = recieve data from input
 // insert = insert to database table
-                    $sql = " insert into tb_user(user_id,user_firstname,user_surname,user_email,user_tel,user_position,user_sts,user_password,user_limit,user_br_day,salt)";
-                    $sql .= " values ('$teacher_id','$teacher_firstname','$teacher_surname','$teacher_email','$teacher_tel','1','n','$teacher_password','20','7','$salt')";
+                    $sql = " insert into tb_user(user_no,user_firstname,user_surname,user_email,user_tel,user_position,user_sts,user_password,user_limit,user_br_day,salt)";
+                    $sql .= " values ('0','$teacher_firstname','$teacher_surname','$teacher_email','$teacher_tel','1','n','$teacher_password','20','7','$salt')";
 
 
                     if ($cls_conn->write_base($sql) == true) {
                         echo $cls_conn->show_message('Success');
-                        echo $cls_conn->goto_page(1, 'index.php');
+                        echo $cls_conn->goto_page(1, '../frontend/cieonui/index.php');
                     } else {
                         echo $cls_conn->show_message('Unsuccess');
                     }
