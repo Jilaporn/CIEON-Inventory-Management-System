@@ -107,12 +107,13 @@
                                 <form method="POST">
                                     <input type="hidden" name="category_id" value="<?= $category_id ?>" class="form-control">
                                     <select type="number" name="num" value="0" max="<?= $position_limit ?>" min="1" class="form-control" mobile>
-                                        <option value="0">Select</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
+                                        <?
+                                            for($i=1;$i<=$count;$i++)
+                                            {
+                                                echo "<option value='".$i."'>".$i."</option>";
+                                            }
+
+                                        ?>
                                     </select>
                                     <br>
                                     <button type="submit" name="submitt" value="submit" class="w3-btn w3-green w3-round">Reserve</button>
