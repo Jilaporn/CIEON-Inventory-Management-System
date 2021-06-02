@@ -101,9 +101,10 @@ $result=$cls_conn->select_base($sql);
 while($row=mysqli_fetch_array($result)){
 $all = $row['sum(tb_reserve.rs_amount)'];
 $amount=$row['rs_amount'];
-$rs_date = $row['rs_date'];
+
 $item_id = $row['item_id'];
 $item_name = $row['rs_item_name'];
+$rs_date = $row['rs_date'];
 $datedate = date ("Y-m-d", strtotime("+1 day", strtotime($rs_date))); 
 
         ?>

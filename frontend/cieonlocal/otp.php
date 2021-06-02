@@ -109,6 +109,8 @@ if (isset($_POST['resend'])) {
                         if ($rs_otp == $otpvalue) {
                             $sql1 = " update tb_reserve set rs_flag = 'b' where user_id = '$idd' and rs_flag ='o' ";
                             $cls_conn->write_base($sql1) == true;
+                            $get_user =mysqli_fetch_assoc($cls_conn->select_base("SELECT user_br_day FROM tb_user WHERE user_id = '".$idd."'"));
+                            $cls_conn->select_base("UPDATE tb_activity SET act_exp_date = DATE_ADD(act_exp_date, INTERVAL ".$get_user['user_br_day']." DAY) WHERE act_id = 599");
                             $sql6 = "SELECT *from tb_reserve where user_id = '$idd' ";
                             $re2 = $cls_conn->select_base($sql6);
                             while ($row2 = mysqli_fetch_array($re2)) {

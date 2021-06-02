@@ -198,10 +198,14 @@ if ($_SESSION['student']) {
         where  tb_reserve.user_id = '$idd' and tb_reserve.rs_flag ='o' and tb_reserve.rs_otp = '0'
         GROUP by tb_reserve.rs_item_name 
         ";
+        
                     // echo $sql;
                     $result = $cls_conn->select_base($sql);
                     while ($row = mysqli_fetch_array($result)) {
                         $all = $row['sum(tb_reserve.rs_amount)'];
+                        
+                        $rs_date = $row['rs_date'];
+                        $datedate = date ("Y-m-d", strtotime("+1 day", strtotime($rs_date))); 
 
                     ?>
                         <div class="col-md-4 ">
@@ -211,6 +215,7 @@ if ($_SESSION['student']) {
                                 </div>
                                 <div class="item-content">
                                     <h5 class="item-title mbr-fonts-style display-7"><strong>Name: <?= $row['rs_item_name'] ?></strong></h5>
+                                    <h5 class="item-title mbr-fonts-style display-7"><strong>Pickup Date: <?= $datedate ?></strong></h5>
                                     <h5 class="item-title mbr-fonts-style display-7"><strong>Amount: <?= $all ?></strong></h5>
                                 </div>
                                 <div class="mbr-section-btn item-footer mt-2">
@@ -342,6 +347,9 @@ if ($_SESSION['student']) {
                     $result = $cls_conn->select_base($sql);
                     while ($row = mysqli_fetch_array($result)) {
                         $all = $row['sum(tb_reserve.rs_amount)'];
+                        
+                        $rs_date = $row['rs_date'];
+                        $datedate = date ("Y-m-d", strtotime("+1 day", strtotime($rs_date))); 
 
                     ?>
                         <div class="col-md-4 ">
@@ -351,6 +359,7 @@ if ($_SESSION['student']) {
                                 </div>
                                 <div class="item-content">
                                     <h5 class="item-title mbr-fonts-style display-7"><strong>Name: <?= $row['rs_item_name'] ?></strong></h5>
+                                    <h5 class="item-title mbr-fonts-style display-7"><strong>Pickup Date: <?= $datedate ?></strong></h5>
                                     <h5 class="item-title mbr-fonts-style display-7"><strong>Amount: <?= $all ?></strong></h5>
                                 </div>
                                 <div class="mbr-section-btn item-footer mt-2">

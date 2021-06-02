@@ -207,6 +207,7 @@ if ($_SESSION['student']) {
                     $result = $cls_conn->select_base($sql);
                     while ($row = mysqli_fetch_array($result)) {
                         $all = $row['count(tb_activity.act_item_name)'];
+                        $act_exp_date = $row['act_exp_date'];
 
                     ?>
 
@@ -217,6 +218,7 @@ if ($_SESSION['student']) {
                                 </div>
                                 <div class="item-content">
                                     <h5 class="item-title mbr-fonts-style display-7"><strong>Name: <?= $row['act_item_name'] ?></strong></h5>
+                                    <h5 class="item-title mbr-fonts-style display-7"><strong>Return date: <?= $act_exp_date ?></strong></h5>
                                     <h5 class="item-title mbr-fonts-style display-7"><strong>Amount: <?= $all ?></strong></h5>
                                 </div>
                                 <div class="mbr-section-btn item-footer mt-2">
@@ -351,6 +353,7 @@ if ($_SESSION['student']) {
                     $result = $cls_conn->select_base($sql);
                     while ($row = mysqli_fetch_array($result)) {
                         $all = $row['count(tb_activity.act_item_name)'];
+                        $act_exp_date = $row['act_exp_date'];
 
                     ?>
 
@@ -362,6 +365,7 @@ if ($_SESSION['student']) {
                                 </div>
                                 <div class="item-content">
                                     <h5 class="item-title mbr-fonts-style display-7"><strong>Name: <?= $row['act_item_name'] ?></strong></h5>
+                                    <h5 class="item-title mbr-fonts-style display-7"><strong>Return date: <?= $act_exp_date ?></strong></h5>
                                     <h5 class="item-title mbr-fonts-style display-7"><strong>Amount: <?= $all ?></strong></h5>
                                 </div>
                                 <div class="mbr-section-btn item-footer mt-2">
