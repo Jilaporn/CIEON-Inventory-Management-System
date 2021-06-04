@@ -311,7 +311,7 @@
                             <div class="item-content">
                                 <h5 class="item-title mbr-fonts-style display-7"><strong>Name: <?= $row['itd_item_name'] ?></strong></h5>
                                 <!-- <p class="mbr-text mbr-fonts-style mt-3 display-7">Detail: <?= $row['category_detail'] ?></p> -->
-                                <h5 class="item-title mbr-fonts-style display-7"><strong>Amount: <?= $product_qty ?></strong></h5>
+                                <!-- <h5 class="item-title mbr-fonts-style display-7"><strong>Amount: <?= $product_qty ?></strong></h5> -->
                             </div>
                             <div class="mbr-section-btn item-footer mt-2">
 
