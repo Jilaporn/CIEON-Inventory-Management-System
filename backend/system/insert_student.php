@@ -99,18 +99,26 @@
                         $password = hash('sha256',$_POST['user_password'].$salt);
                         $student_password = $password;
 
-
-                        // values = recieve data from input
-                        // insert = insert to database table
-                        $sql = " insert into tb_user(user_id,user_password,user_firstname,user_surname,user_email,user_tel,user_position,user_limit,user_sts,salt)";
-                        $sql .= " values ('$student_id','$student_password','$student_firstname','$student_surname','$student_email','$student_tel','2','10','n','$salt')";
-
-
-                        if ($cls_conn->write_base($sql) == true) {
-                            echo $cls_conn->show_message('Success');
-                            echo $cls_conn->goto_page(1, 'show_student.php');
-                        } else {
-                            echo $cls_conn->show_message('Unsuccess');
+                        $sql4 = "SELECT * FROM tb_user WHERE user_no = '$student_id'";
+                        $sql4 = mysqli_fetch_assoc($cls_conn->select_base($sql4));
+                        if(!$sql4['user_no'])
+                        {
+                            //IF NO USER IN DB
+                            $sql = " insert into tb_user(user_no,user_firstname,user_surname,user_email,user_tel,user_position,user_sts,user_password,user_limit,user_br_day,salt)";
+                            $sql .= " values ('$student_id','$student_firstname','$student_surname','$student_email','$student_tel','2','n','$student_password','10','7','$salt')";
+    
+    
+                            if ($cls_conn->write_base($sql) == true) {
+                                echo $cls_conn->show_message('Success');
+                                echo $cls_conn->goto_page(1, 'show_student.php');
+                            } else {
+                                echo $cls_conn->show_message('Unsuccess');
+                            }
+                        }
+                        else
+                        {
+                            //IF USER IN DB
+                            echo $cls_conn->show_message('User Existed');
                         }
                     }
                     ?>

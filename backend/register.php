@@ -48,9 +48,13 @@ input[type=number] {
 <body>
 	
 	<div class="limiter">
+	<div  class="container row">
+    <a class="btn btn-primary display-4" href="../../frontend/cieonui/index.php">Back</a></div>
+    </div>
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" onsubmit="return set_phone_number()" method="POST">
+				
 					<span class="login100-form-title p-b-26">
 					</span>
 					<span class="login100-form-title p-b-48">
@@ -145,12 +149,7 @@ input[type=number] {
 				  
 					return $str;
 				  }
-				  if (isset($_POST['test'])) {
-					  var_dump($_POST);
-					  ?>
-					  
-					  <?
-				  }
+				  
                 if (isset($_POST['student'])) {
                     $student_id = $_POST['number'];
                     $student_firstname = $_POST['firstname'];
@@ -162,21 +161,38 @@ input[type=number] {
     				$password = hash('sha256',$password.$salt);
                     $student_password = $password;
 
+					
+					$sql4 = "SELECT * FROM tb_user WHERE user_no = '$student_id'";
+					$sql4 = mysqli_fetch_assoc($cls_conn->select_base($sql4));
+					if(!$sql4['user_no'])
+					{
+						//IF NO USER IN DB
+						$sql = " insert into tb_user(user_no,user_firstname,user_surname,user_email,user_tel,user_position,user_sts,user_password,user_limit,user_br_day,salt)";
+						$sql .= " values ('$student_id','$student_firstname','$student_surname','$student_email','$student_tel','2','n','$student_password','10','7','$salt')";
 
+
+						if ($cls_conn->write_base($sql) == true) {
+							echo $cls_conn->show_message('Success');
+							echo $cls_conn->goto_page(1, '../frontend/cieonui/index.php');
+						} else {
+							echo $cls_conn->show_message('Unsuccess');
+						}
+					}
+					else
+					{
+						//IF USER IN DB
+						echo $cls_conn->show_message('Already Register');
+					}
+					
+					
 
 // values = recieve data from input
 // insert = insert to database table
-                    $sql = " insert into tb_user(user_no,user_firstname,user_surname,user_email,user_tel,user_position,user_sts,user_password,user_limit,user_br_day,salt)";
-                    $sql .= " values ('$student_id','$student_firstname','$student_surname','$student_email','$student_tel','2','n','$student_password','10','7','$salt')";
-
-
-                    if ($cls_conn->write_base($sql) == true) {
-                        echo $cls_conn->show_message('Success');
-                        echo $cls_conn->goto_page(1, '../frontend/cieonui/index.php');
-                    } else {
-                        echo $cls_conn->show_message('Unsuccess');
-                    }
-                }
+					
+                    
+                
+			}
+			
                 ?> 
                 <?php
                 if (isset($_POST['teacher'])) {
@@ -190,20 +206,32 @@ input[type=number] {
     				$password = hash('sha256',$password.$salt);
                     $teacher_password = $password;
 
+					$sql4 = "SELECT * FROM tb_user WHERE user_email = '$teacher_email'";
+					$sql4 = mysqli_fetch_assoc($cls_conn->select_base($sql4));
+					if(!$sql4['user_email'])
+					{
+						//IF NO USER IN DB
+						$sql = " insert into tb_user(user_no,user_firstname,user_surname,user_email,user_tel,user_position,user_sts,user_password,user_limit,user_br_day,salt)";
+						$sql .= " values ('0','$teacher_firstname','$teacher_surname','$teacher_email','$teacher_tel','1','n','$teacher_password','20','7','$salt')";
+
+
+						if ($cls_conn->write_base($sql) == true) {
+							echo $cls_conn->show_message('Success');
+							echo $cls_conn->goto_page(1, '../frontend/cieonui/index.php');
+						} else {
+							echo $cls_conn->show_message('Unsuccess');
+						}
+					}
+					else
+					{
+						//IF USER IN DB
+						echo $cls_conn->show_message('Already Register');
+					}
 
 
 // values = recieve data from input
 // insert = insert to database table
-                    $sql = " insert into tb_user(user_no,user_firstname,user_surname,user_email,user_tel,user_position,user_sts,user_password,user_limit,user_br_day,salt)";
-                    $sql .= " values ('0','$teacher_firstname','$teacher_surname','$teacher_email','$teacher_tel','1','n','$teacher_password','20','7','$salt')";
-
-
-                    if ($cls_conn->write_base($sql) == true) {
-                        echo $cls_conn->show_message('Success');
-                        echo $cls_conn->goto_page(1, '../frontend/cieonui/index.php');
-                    } else {
-                        echo $cls_conn->show_message('Unsuccess');
-                    }
+                    
                 }
                 ?>
 

@@ -48,9 +48,13 @@ input[type=number] {
 <body>
 	
 	<div class="limiter">
+	<div  class="container row">
+    <a class="btn btn-primary display-4" href="../../frontend/cieonlocal/index.php">Back</a></div>
+    </div>
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" onsubmit="return set_phone_number()" method="POST">
+				
 					<span class="login100-form-title p-b-26">
 					</span>
 					<span class="login100-form-title p-b-48">
@@ -88,15 +92,18 @@ input[type=number] {
 						<span class="focus-input100"></span>
 					</div>
 					<?} ?>
+					
+
 					<div class="wrap-input100 " >
 						<input id="email" class="input100" type="text" disabled="disabled" name="email" placeholder="Email">
 						<span class="focus-input100"></span>
 					</div>
 
+
 					<div class="wrap-input100 validate-input" data-validate="Enter telephone number">
 						<span class="btn-show-pass">
 						</span>
-						<input id="phone" class="input100" type="text" required="required" name="telephone" placeholder=" Telephone number">
+						<input id="phone" class="input100" required="required" type="text" name="telephone" placeholder=" Telephone number">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -106,21 +113,12 @@ input[type=number] {
 						</span>
 					</div>
 
-					<!-- <div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" name="test">
-								test
-							</button> -->
-							
-						<!-- </div>
-					</div> -->
 					<?php if($_GET['po'] == 's' ){ ?>
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn" name="student">
-								Register
+								Student
 							</button>
 						</div>
 					</div>
@@ -130,7 +128,7 @@ input[type=number] {
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn" name="teacher">
-								Register
+								Teacher
 							</button>
 						</div>
 					</div>
@@ -151,12 +149,7 @@ input[type=number] {
 				  
 					return $str;
 				  }
-				  if (isset($_POST['test'])) {
-					  var_dump($_POST);
-					  ?>
-					  
-					  <?
-				  }
+				  
                 if (isset($_POST['student'])) {
                     $student_id = $_POST['number'];
                     $student_firstname = $_POST['firstname'];
@@ -168,21 +161,38 @@ input[type=number] {
     				$password = hash('sha256',$password.$salt);
                     $student_password = $password;
 
+					
+					$sql4 = "SELECT * FROM tb_user WHERE user_no = '$student_id'";
+					$sql4 = mysqli_fetch_assoc($cls_conn->select_base($sql4));
+					if(!$sql4['user_no'])
+					{
+						//IF NO USER IN DB
+						$sql = " insert into tb_user(user_no,user_firstname,user_surname,user_email,user_tel,user_position,user_sts,user_password,user_limit,user_br_day,salt)";
+						$sql .= " values ('$student_id','$student_firstname','$student_surname','$student_email','$student_tel','2','n','$student_password','10','7','$salt')";
 
+
+						if ($cls_conn->write_base($sql) == true) {
+							echo $cls_conn->show_message('Success');
+							echo $cls_conn->goto_page(1, 'index.php');
+						} else {
+							echo $cls_conn->show_message('Unsuccess');
+						}
+					}
+					else
+					{
+						//IF USER IN DB
+						echo $cls_conn->show_message('Already Register');
+					}
+					
+					
 
 // values = recieve data from input
 // insert = insert to database table
-                    $sql = " insert into tb_user(user_no,user_firstname,user_surname,user_email,user_tel,user_position,user_sts,user_password,user_limit,user_br_day,salt)";
-                    $sql .= " values ('$student_id','$student_firstname','$student_surname','$student_email','$student_tel','2','n','$student_password','10','7','$salt')";
-
-
-                    if ($cls_conn->write_base($sql) == true) {
-                        echo $cls_conn->show_message('Success');
-                        echo $cls_conn->goto_page(1, 'login.php');
-                    } else {
-                        echo $cls_conn->show_message('Unsuccess');
-                    }
-                }
+					
+                    
+                
+			}
+			
                 ?> 
                 <?php
                 if (isset($_POST['teacher'])) {
@@ -196,20 +206,32 @@ input[type=number] {
     				$password = hash('sha256',$password.$salt);
                     $teacher_password = $password;
 
+					$sql4 = "SELECT * FROM tb_user WHERE user_email = '$teacher_email'";
+					$sql4 = mysqli_fetch_assoc($cls_conn->select_base($sql4));
+					if(!$sql4['user_email'])
+					{
+						//IF NO USER IN DB
+						$sql = " insert into tb_user(user_no,user_firstname,user_surname,user_email,user_tel,user_position,user_sts,user_password,user_limit,user_br_day,salt)";
+						$sql .= " values ('0','$teacher_firstname','$teacher_surname','$teacher_email','$teacher_tel','1','n','$teacher_password','20','7','$salt')";
+
+
+						if ($cls_conn->write_base($sql) == true) {
+							echo $cls_conn->show_message('Success');
+							echo $cls_conn->goto_page(1, 'index.php');
+						} else {
+							echo $cls_conn->show_message('Unsuccess');
+						}
+					}
+					else
+					{
+						//IF USER IN DB
+						echo $cls_conn->show_message('Already Register');
+					}
 
 
 // values = recieve data from input
 // insert = insert to database table
-                    $sql = " insert into tb_user(user_no,user_firstname,user_surname,user_email,user_tel,user_position,user_sts,user_password,user_limit,user_br_day,salt)";
-                    $sql .= " values ('0','$teacher_firstname','$teacher_surname','$teacher_email','$teacher_tel','1','n','$teacher_password','20','7','$salt')";
-
-
-                    if ($cls_conn->write_base($sql) == true) {
-                        echo $cls_conn->show_message('Success');
-                        echo $cls_conn->goto_page(1, 'login.php');
-                    } else {
-                        echo $cls_conn->show_message('Unsuccess');
-                    }
+                    
                 }
                 ?>
 
@@ -260,7 +282,6 @@ else
 }
 
 
-
 function update_number(){
     
     if(document.getElementById('number').value)
@@ -274,10 +295,10 @@ function update_email(){
     
     if(document.getElementById('firstname').value)
     {
-        var first_name = document.getElementById('firstname').value.toLowerCase();;
+        var first_name = document.getElementById('firstname').value.toLowerCase();
         if(document.getElementById('surname').value)
         {
-            var surname = document.getElementById('surname').value.toLowerCase();;
+            var surname = document.getElementById('surname').value.toLowerCase();
             document.getElementById('email').value = first_name+'.'+surname.substring(0,2)+"@kmitl.ac.th";
         }
     }

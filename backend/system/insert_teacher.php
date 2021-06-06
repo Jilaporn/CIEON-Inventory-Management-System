@@ -104,19 +104,26 @@
 
 
 
+                $sql4 = "SELECT * FROM tb_user WHERE user_email = '$teacher_email'";
+                $sql4 = mysqli_fetch_assoc($cls_conn->select_base($sql4));
+                if(!$sql4['user_email'])
+                {
+                    //IF NO USER IN DB
+                    $sql = " insert into tb_user(user_no,user_firstname,user_surname,user_email,user_tel,user_position,user_sts,user_password,user_limit,user_br_day,salt)";
+                    $sql .= " values ('0','$teacher_firstname','$teacher_surname','$teacher_email','$teacher_tel','1','n','$teacher_password','20','7','$salt')";
 
-                // values = recieve data from input
-                // insert = insert to database table
-                $sql = " insert into tb_user(user_id,user_password,user_firstname,user_surname,user_email,user_tel,user_position,user_limit,user_sts,salt)";
-                $sql .= " values ('$teacher_id','$teacher_password','$teacher_firstname','$teacher_surname','$teacher_email','$teacher_tel','1','20','n','$salt')";
-               
 
-
-                if ($cls_conn->write_base($sql) == true) {
-                    echo $cls_conn->show_message('Success');
-                    echo $cls_conn->goto_page(1, 'show_teacher.php');
-                } else {
-                    echo $cls_conn->show_message('Unsuccess');
+                    if ($cls_conn->write_base($sql) == true) {
+                        echo $cls_conn->show_message('Success');
+                        echo $cls_conn->goto_page(1, 'show_teacher.php');
+                    } else {
+                        echo $cls_conn->show_message('Unsuccess');
+                    }
+                }
+                else
+                {
+                    //IF USER IN DB
+                    echo $cls_conn->show_message('User Existed');
                 }
             }
             ?>
