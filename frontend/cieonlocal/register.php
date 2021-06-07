@@ -108,6 +108,9 @@ input[type=number] {
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
+					<span class="btn-show-pass">
+						<i class="zmdi zmdi-eye"></i>
+					</span>
 						<input class="input100" type="password" required="required" name="password" placeholder=" Password" minlength="6" maxlength="20">
 						<span class="btn-show-pass">
 						</span>
