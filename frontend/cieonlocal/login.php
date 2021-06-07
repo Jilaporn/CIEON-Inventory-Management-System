@@ -281,7 +281,7 @@ error_reporting(0);
 							// echo $sql;
 						}
 					} else {
-						echo $cls_conn->show_message('Username or Password is incorrect If you forget your password please use forget password buttom');
+						echo $cls_conn->show_message('Username or password is incorrect. If you forgot your password, please use the ‘forget password’ button.');
 						// echo $sql;
 						// echo $sql2;
 					}
