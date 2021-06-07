@@ -154,7 +154,7 @@
                                                 <strong><?= $row['act_item_name'] ?></strong>
                                             </h6>
                                             <p class="mbr-text mbr-fonts-style display-7"> Return before: <?= $act_exp_date ?></p>
-                                            <p class="mbr-text mbr-fonts-style display-8" style="color: red"> *item must be returned in seven days after it is borrowed</p>
+                                            <p class="mbr-text mbr-fonts-style display-8" style="color: red"> *Item must be returned in seven days after it is borrowed</p>
                                             <p class="mbr-text mbr-fonts-style display-7"> locker no: <?= $lockerno ?></p>
                                         </div>
                                         <form method="post">

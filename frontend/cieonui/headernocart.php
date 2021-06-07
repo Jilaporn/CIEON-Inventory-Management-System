@@ -2,12 +2,13 @@
 <?php include('../../backend/class_conn.php'); ?>
 <?php $cls_conn = new class_conn(); ?>
 <?php
+
     if(!$_SESSION['user_id'] && ($_SERVER['REQUEST_URI'] != '/frontend/cieonui/index.php'))
     {
         header('Location: /backend/login.php');
     }
 
-    include('../cieonlocal/check_otp.php');
+    include('check_otp.php');
 ?>
 <head>
     <!-- Site made with Mobirise Website Builder v5.0.29, https://mobirise.com -->

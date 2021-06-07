@@ -97,7 +97,7 @@
                             Telephone number :
                             <input id="phone" class="form-control" type="text" name="tel" value="<?=$user_tel?>" placeholder=" Telephone number" id="phone-form7-2y">
                         </div>
-                        Limit number:
+                        Amount of items that user can reserve and borrow:
                         <div data-for="phone" class="col-lg-12 col-md-12 col-sm-12 form-group">
                             <input type="text" name="lim" placeholder="limit" class="form-control" value="<?=$user_limit?>" disabled id="limit-form7-2y">
                         </div>

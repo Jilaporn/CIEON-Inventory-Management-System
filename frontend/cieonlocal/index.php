@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <?php
-error_reporting(0);
+error_reporting(E_ALL);
 ?>
 <?php session_start();?>
-<html  >
+<html>
 <head>
   <!-- Site made with Mobirise Website Builder v5.0.29, https://mobirise.com -->
   <meta charset="UTF-8">

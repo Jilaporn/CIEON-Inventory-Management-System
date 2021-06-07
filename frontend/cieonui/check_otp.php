@@ -1,6 +1,6 @@
 <?php 
     session_start();error_reporting(E_ALL);
-    include('class_conn.php');
+    include('../../backend/class_conn.php');
     $cls_conn=new class_conn();
     $date_now = date("Y-m-d H:i:s");
     $sql = "SELECT * FROM tb_reserve WHERE rs_flag = 'o'";

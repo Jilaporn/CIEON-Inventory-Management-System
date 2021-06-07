@@ -133,7 +133,7 @@ $datedate = date ("Y-m-d", strtotime("+1 day", strtotime($rs_date)));
                                     <h6 class="card-title mbr-fonts-style display-5">
                                         <strong><?=$row['rs_item_name']?></strong></h6>
                                     <p class="mbr-text mbr-fonts-style display-7"> Pick up before: <?=$datedate?></p>
-                                    <p class="mbr-text mbr-fonts-style display-8" style="color: red"> * item must be picked in one day after it has been reserved </p>
+                                    <p class="mbr-text mbr-fonts-style display-8" style="color: red"> * Item must be picked in one day after it has been reserved </p>
                                 </div>
                                 <form method="post">
                                 <div class="col-md-auto">
