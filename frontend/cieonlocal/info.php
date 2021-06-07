@@ -163,7 +163,7 @@
                         } elseif ($num > $count) {
                             echo $cls_conn->show_message('Overbooked');
                         } elseif (0 > $alllimit) {
-                            echo $cls_conn->show_message('Borrow over limit');
+                            echo $cls_conn->show_message('Borrow limit amount has been reached');
                         } else {
 
                             
@@ -208,7 +208,7 @@
                             $get_item_limit = mysqli_fetch_assoc($cls_conn->select_base($get_item_limit));
                             if($get_item_limit['item_detail_id'])
                             {
-                                $update_reserve = "UPDATE tb_item_detail SET itd_item_sts = 'rs' WHERE  itd_item_name = '".$item_name."' LIMIT ".$num.";";
+                                $update_reserve = "UPDATE tb_item_detail SET itd_item_sts = 'rs' WHERE  itd_item_name = '".$item_name."' AND itd_item_sts ='a' LIMIT ".$num.";";
                                 $cls_conn->select_base($update_reserve);
                             }
                             else

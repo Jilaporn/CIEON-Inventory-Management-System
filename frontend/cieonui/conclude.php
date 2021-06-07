@@ -152,7 +152,7 @@ if(isset($_POST['delete'])){
     $rs_amount = $_POST['rs_amount'];
     // echo $rs_id; 
     $sql ="delete from tb_activity where user_id = '$idd' and act_type ='rs' and act_item_name ='$item_name' and act_flag ='o' limit 1 ";
-    $sql1 = "UPDATE tb_reserve SET rs_amount = rs_amount -'1' WHERE item_id = '".$item_id."';";
+    $sql1 = "UPDATE tb_reserve SET rs_amount = rs_amount -'1' WHERE item_id = '".$item_id."' and rs_amount >'0';";
     $sql2 ="SELECT rs_amount from tb_reserve";
     $cls_conn->write_base($sql);
     $cls_conn->write_base($sql1);

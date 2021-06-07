@@ -186,7 +186,7 @@
                         } elseif ($num > $count) {
                             echo $cls_conn->show_message('Reserve over amount');
                         } elseif (0 > $alllimit) {
-                            echo $cls_conn->show_message('Reseve over limit');
+                            echo $cls_conn->show_message('Reserve limit amount has been reached');
                         } else {
 
                            
@@ -228,7 +228,7 @@
                             $get_item_limit = mysqli_fetch_assoc($cls_conn->select_base($get_item_limit));
                             if($get_item_limit['item_detail_id'])
                             {
-                                $update_reserve = "UPDATE tb_item_detail SET itd_item_sts = 'rs' WHERE  itd_item_name = '".$item_name."' LIMIT ".$num.";";
+                                $update_reserve = "UPDATE tb_item_detail SET itd_item_sts = 'rs' WHERE  itd_item_name = '".$item_name."' AND itd_item_sts ='a' LIMIT ".$num.";";
                                 $cls_conn->select_base($update_reserve);
                             }
                             else
@@ -289,6 +289,7 @@
  tb_item_detail.item_id,
  tb_item_detail.itd_cate_type,
  tb_item_detail.itd_item_name,
+ count(tb_item_detail.itd_item_name),
  tb_item_detail.itd_item_pic,
  tb_item_detail.itd_item_sts,
  tb_item_detail.itd_boxno
