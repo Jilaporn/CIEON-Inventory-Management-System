@@ -156,12 +156,15 @@ $datedate = date ("Y-m-d", strtotime("+1 day", strtotime($rs_date)));
     </div>
 </section>
 <?php 
+echo $_SESSION['student'];
+echo $_SESSION['teacher'];
 if(isset($_POST['delete'])){
     $rs_id = $_POST['delete'];
     $item_id = $_POST['item_id'];
     $item_name = $_POST['item_name'];
     $rs_amount = $_POST['rs_amount'];
     // echo $rs_id; 
+    if ($_SESSION['student']) {
     $sql ="DELETE from tb_activity where user_id = '$idd' and act_type ='rs' and act_item_name ='$item_name' and act_flag ='o' limit 1 ";
     $sql1 = "UPDATE tb_reserve SET rs_amount = rs_amount -'1' WHERE rs_item_name = '".$item_name."' LIMIT 1;";
     $cls_conn->write_base($sql);
@@ -169,13 +172,31 @@ if(isset($_POST['delete'])){
     $sql21 = "DELETE from tb_reserve where rs_id = '$rs_id' and rs_amount <='0'  ";
     $sql22 = "UPDATE tb_item_detail SET itd_item_sts = 'a' WHERE itd_item_sts = 'rs' AND itd_item_name = '".$item_name."' LIMIT 1";
     $sql23 = "UPDATE tb_cate_item SET ith_avalible = ith_avalible + '1' WHERE item_id = '".$item_id."';";
-    $sql4 = "UPDATE tb_user SET user_limit = user_limit + '1' WHERE user_id = '$idd'";
+    $sql4 = "UPDATE tb_user SET user_limit = user_limit + '1' WHERE user_id = '$idd' and user_limit <'10' LIMIT 1";
     $cls_conn->write_base($sql21);
     $cls_conn->write_base($sql22);
     $cls_conn->write_base($sql23);
     $cls_conn->write_base($sql4);
-    echo $cls_conn->goto_page(1, 'conclude.php');
+    echo $cls_conn->goto_page(0, 'conclude.php');
 }
+
+elseif($_SESSION['teacher']){
+        $sql ="DELETE from tb_activity where user_id = '$idd' and act_type ='rs' and act_item_name ='$item_name' and act_flag ='o' limit 1 ";
+        $sql1 = "UPDATE tb_reserve SET rs_amount = rs_amount -'1' WHERE rs_item_name = '".$item_name."' LIMIT 1;";
+        $cls_conn->write_base($sql);
+        $cls_conn->write_base($sql1);
+        $sql21 = "DELETE from tb_reserve where rs_id = '$rs_id' and rs_amount <='0'  ";
+        $sql22 = "UPDATE tb_item_detail SET itd_item_sts = 'a' WHERE itd_item_sts = 'rs' AND itd_item_name = '".$item_name."' LIMIT 1";
+        $sql23 = "UPDATE tb_cate_item SET ith_avalible = ith_avalible + '1' WHERE item_id = '".$item_id."';";
+        $sql4 = "UPDATE tb_user SET user_limit = user_limit + '1' WHERE user_id = '$idd' and user_limit <'20' LIMIT 1";
+        $cls_conn->write_base($sql21);
+        $cls_conn->write_base($sql22);
+        $cls_conn->write_base($sql23);
+        $cls_conn->write_base($sql4);
+        echo $cls_conn->goto_page(0, 'conclude.php');
+}
+}
+
 ?>
 
 <section class="content11 cid-spwNySWLqS" id="content11-1j">
