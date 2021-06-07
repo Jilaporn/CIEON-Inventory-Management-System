@@ -90,12 +90,14 @@
                             Email :<input type="email" name="email" placeholder="Email" data-form-field="email" class="form-control" value="<?=$user_email?>" id="email-form7-2y">
                         </div> -->
                         <div data-for="phone" class="col-lg-12 col-md-12 col-sm-12 form-group">
+                        Email:
                             <input type="text" name="email" placeholder="email" class="form-control" value="<?=$user_email?>" disabled id="limit-form7-2y">
                         </div>
                         <div data-for="phone" class="col-lg-12 col-md-12 col-sm-12 form-group" data-validate="Enter telephone number">
                             Telephone number :
                             <input id="phone" class="form-control" type="text" name="tel" value="<?=$user_tel?>" placeholder=" Telephone number" id="phone-form7-2y">
                         </div>
+                        Limit number:
                         <div data-for="phone" class="col-lg-12 col-md-12 col-sm-12 form-group">
                             <input type="text" name="lim" placeholder="limit" class="form-control" value="<?=$user_limit?>" disabled id="limit-form7-2y">
                         </div>

@@ -108,10 +108,14 @@ input[type=number] {
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
+					<span class="btn-show-pass">
+								<i class="zmdi zmdi-eye"></i>
+							</span>
 						<input class="input100" type="password" required="required" name="password" placeholder=" Password" minlength="6" maxlength="20">
 						<span class="btn-show-pass">
 						</span>
 					</div>
+					<p class="mbr-text mbr-fonts-style display-8" style="color: red"> *Password must be atleast 6 characters but not more than 20 characters</p>
 
 					<?php if($_GET['po'] == 's' ){ ?>
 					<div class="container-login100-form-btn">

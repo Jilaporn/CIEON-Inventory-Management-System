@@ -94,7 +94,7 @@
                             <img src="../../backend/upload/<?= $item_pic ?>" alt="Mobirise">
                         </div>
                     </div>
-                    <form method="post">
+                    <form class="col-lg-6" method="post">
                         <div class="col-12 col-lg">
                             <div class="text-box">
                                 <h5 class="mbr-title mbr-fonts-style display-2">
@@ -208,7 +208,7 @@
                             $get_item_limit = mysqli_fetch_assoc($cls_conn->select_base($get_item_limit));
                             if($get_item_limit['item_detail_id'])
                             {
-                                $update_reserve = "UPDATE tb_item_detail SET itd_item_sts = 'rs' WHERE  itd_item_name = '".$item_name."' LIMIT ".$num.";";
+                                $update_reserve = "UPDATE tb_item_detail SET itd_item_sts = 'rs' WHERE itd_item_sts = 'a' AND itd_item_name = '".$item_name."' LIMIT ".$num.";";
                                 $cls_conn->select_base($update_reserve);
                             }
                             else

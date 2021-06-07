@@ -7,7 +7,7 @@
         header('Location: /backend/login.php');
     }
 
-
+    include('../cieonlocal/check_otp.php');
 ?>
 <head>
     <!-- Site made with Mobirise Website Builder v5.0.29, https://mobirise.com -->
@@ -221,7 +221,7 @@ if (isset($_SESSION['student'])) {
                 </div>
                 <div class="modal-footer">
                     <a href="conclude.php" class="btn btn-default">Reserve</a>
-                    <a href="index.php" class="btn btn-default">Cancel</a>
+                    <a href="index.php" class="btn btn-default">Back</a>
                 </div>
             </div>
 
@@ -360,7 +360,7 @@ if (isset($_SESSION['student'])) {
                 </div>
                 <div class="modal-footer">
                     <a href="conclude.php" class="btn btn-default">Reserve</a>
-                    <a href="index.php" class="btn btn-default">Cancel</a>
+                    <a href="index.php" class="btn btn-default">Back</a>
                 </div>
             </div>
 
@@ -375,7 +375,7 @@ if (isset($_SESSION['student'])) {
             <div class="container">
                 <div class="navbar-brand">
                     <span class="navbar-logo">
-                        <a href="https://mobiri.se">
+                        <a href="index.php">
                             <img src="assets/images/cieon-121x121.png" alt="Mobirise" style="height: 3.8rem;">
                         </a>
                     </span>

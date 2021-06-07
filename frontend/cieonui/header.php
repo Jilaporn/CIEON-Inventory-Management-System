@@ -5,7 +5,7 @@
 if (!$_SESSION['user_id'] && ($_SERVER['REQUEST_URI'] != '/frontend/cieonui/index.php')) {
     header('Location: /backend/login.php');
 }
-
+include('../cieonlocal/check_otp.php');
 
 ?>
 
@@ -100,7 +100,7 @@ if ($_SESSION['student']) {
             <div class="container">
                 <div class="navbar-brand">
                     <span class="navbar-logo">
-                        <a href="https://mobiri.se">
+                        <a href="index.php">
                             <img src="assets/images/cieon-121x121.png" alt="Mobirise" style="height: 3.8rem;">
                         </a>
                     </span>
@@ -229,7 +229,7 @@ if ($_SESSION['student']) {
                 </div>
                 <div class="modal-footer">
                     <a href="conclude.php" class="btn btn-default">Reserve</a>
-                    <a href="index.php" class="btn btn-default">Cancel</a>
+                    <a href="index.php" class="btn btn-default">ฺBack</a>
                 </div>
             </div>
 
@@ -373,7 +373,7 @@ if ($_SESSION['student']) {
                 </div>
                 <div class="modal-footer">
                     <a href="conclude.php" class="btn btn-default">Reserve</a>
-                    <a href="index.php" class="btn btn-default">Cancel</a>
+                    <a href="index.php" class="btn btn-default">Back</a>
                 </div>
             </div>
 

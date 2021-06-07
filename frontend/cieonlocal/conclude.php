@@ -154,6 +154,7 @@
                                                 <strong><?= $row['act_item_name'] ?></strong>
                                             </h6>
                                             <p class="mbr-text mbr-fonts-style display-7"> Return before: <?= $act_exp_date ?></p>
+                                            <p class="mbr-text mbr-fonts-style display-8" style="color: red"> *item must be returned in seven days after it is borrowed</p>
                                             <p class="mbr-text mbr-fonts-style display-7"> locker no: <?= $lockerno ?></p>
                                         </div>
                                         <form method="post">
@@ -213,61 +214,73 @@ if(isset($_POST['delete'])){
     <button type="submit" style="margin-left: 31% ; width: 50%; " name="submit" class="btn btn-primary display-4" >Borrow</button>
     </div><br>
     <div  class="container row">
-    <a class="btn btn-primary display-4" style="margin-left: 31% ; width: 50% ;" href="borrow.php">Cancel</a></div>
+    <a class="btn btn-primary display-4" style="margin-left: 31% ; width: 50% ;" href="borrow.php">Back</a></div>
     </div>
   
 </form>
 <?php 
     if(isset($_POST['submit'])){
+        $sql = "SELECT * FROM `tb_activity` WHERE user_id = '$idd' AND act_type = 'b' AND rs_flag = 'o'";
+        $sql = mysqli_fetch_array($cls_conn->select_base($sql));
+        if($sql['act_id'])
+        {
+            $sql = "SELECT
+            tb_activity.act_id,
+            tb_activity.user_id,
+            tb_activity.locker_no,
+            tb_activity.rfid_tag,
+            tb_activity.item_id,
+            tb_activity.act_item_name,
+            count(tb_activity.act_item_name),
+            tb_activity.act_pic,
+            tb_activity.act_type,
+            tb_activity.act_date,
+            tb_activity.user_sts,
+            tb_activity.act_exp_date,
+            tb_activity.act_boxno,
+            tb_activity.act_bk_detail,
+            tb_activity.act_flag
+            FROM
+            tb_activity        
+            where  tb_activity.user_id = '$idd'and tb_activity.act_type ='b' and tb_activity.act_flag ='o' and tb_activity.rfid_tag = '0'
+            GROUP by tb_activity.act_item_name 
+            ";
+                // echo $sql;
+                $result = $cls_conn->select_base($sql);
+                while ($row = mysqli_fetch_array($result)) {
+            // $rndno=rand(100000, 999999);//OTP generate
+                $message = urlencode("otp number.".$rndno);
+                $to="$user_email";
+                $subject = "Borrowed List";
+                $txt = "Lists :".$row['act_item_name']."\nAmount :".$row['count(tb_activity.act_item_name)']."\nReturn date:".$row['act_exp_date'];
+                $headers = "From: cieonkmitl@gmail.com" . "\r\n" .
+                "CC: divyasundarsahu@gmail.com";
+                mail($to,$subject,$txt,$headers);
+                }
 
+                if ($cls_conn->write_base($sql) == true) {
+                    echo $cls_conn->show_message('Success');
+                    
+        
+                    echo $cls_conn->goto_page(1, 'logout.php');
+                    // echo $sql;
+                } else {
+                    echo $cls_conn->show_message('Unsuccess');
+                }
+        }
+        else
+        {
+            echo $cls_conn->show_message('No item in cart');
+            echo $cls_conn->goto_page(1, 'borrow.php');
+        }
 
-        $sql = "SELECT
-        tb_activity.act_id,
-        tb_activity.user_id,
-        tb_activity.locker_no,
-        tb_activity.rfid_tag,
-        tb_activity.item_id,
-        tb_activity.act_item_name,
-        count(tb_activity.act_item_name),
-        tb_activity.act_pic,
-        tb_activity.act_type,
-        tb_activity.act_date,
-        tb_activity.user_sts,
-        tb_activity.act_exp_date,
-        tb_activity.act_boxno,
-        tb_activity.act_bk_detail,
-        tb_activity.act_flag
-        FROM
-        tb_activity        
-        where  tb_activity.user_id = '$idd'and tb_activity.act_type ='b' and tb_activity.act_flag ='o' and tb_activity.rfid_tag = '0'
-        GROUP by tb_activity.act_item_name 
-        ";
-            // echo $sql;
-            $result = $cls_conn->select_base($sql);
-            while ($row = mysqli_fetch_array($result)) {
-        // $rndno=rand(100000, 999999);//OTP generate
-$message = urlencode("otp number.".$rndno);
-$to="$user_email";
-$subject = "Borrowed List";
-$txt = "Lists :".$row['act_item_name']."\nAmount :".$row['count(tb_activity.act_item_name)']."\nReturn date:".$row['act_exp_date'];
-$headers = "From: cieonkmitl@gmail.com" . "\r\n" .
-"CC: divyasundarsahu@gmail.com";
-mail($to,$subject,$txt,$headers);
-            }
+       
 
 
 
         // $sql = " update tb_reserve set rs_otp = '$rndno' where user_id = '$idd' and rs_flag ='o' ";
 
-        if ($cls_conn->write_base($sql) == true) {
-            echo $cls_conn->show_message('Success');
-            
-
-            echo $cls_conn->goto_page(1, 'logout.php');
-            // echo $sql;
-        } else {
-            echo $cls_conn->show_message('Unsuccess');
-        }
+        
     }
     ?>
    

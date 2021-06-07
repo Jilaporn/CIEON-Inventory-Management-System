@@ -31,6 +31,16 @@
 <body>
 <?php include('header.php');?>
 
+<script>
+    function prompt_logout() {
+        var r = confirm("Do you want to continue?");
+        if (r == true) {
+            window.location = "index.php";
+        } else {
+            window.location = "logout.php";
+        }
+    }
+</script>
 
 <!-- <section class="engine"><a href="https://mobirise.info/d">web maker</a></section><section class="features15 cid-spwNsx934l" id="features16-1h">
 
@@ -123,6 +133,7 @@ $datedate = date ("Y-m-d", strtotime("+1 day", strtotime($rs_date)));
                                     <h6 class="card-title mbr-fonts-style display-5">
                                         <strong><?=$row['rs_item_name']?></strong></h6>
                                     <p class="mbr-text mbr-fonts-style display-7"> Pick up before: <?=$datedate?></p>
+                                    <p class="mbr-text mbr-fonts-style display-8" style="color: red"> * item must be picked in one day after it has been reserved </p>
                                 </div>
                                 <form method="post">
                                 <div class="col-md-auto">
@@ -152,17 +163,17 @@ if(isset($_POST['delete'])){
     $rs_amount = $_POST['rs_amount'];
     // echo $rs_id; 
     $sql ="delete from tb_activity where user_id = '$idd' and act_type ='rs' and act_item_name ='$item_name' and act_flag ='o' limit 1 ";
-    $sql1 = "UPDATE tb_reserve SET rs_amount = rs_amount -'1' WHERE item_id = '".$item_id."';";
-    $sql2 ="SELECT rs_amount from tb_reserve";
+    $sql1 = "UPDATE tb_reserve SET rs_amount = rs_amount -'1' WHERE rs_item_name = '".$item_name."' LIMIT 1;";
     $cls_conn->write_base($sql);
     $cls_conn->write_base($sql1);
-    $cls_conn->write_base($sql2);
-    $sql21 ="delete from tb_reserve where rs_id = '$rs_id' and rs_amount ='0'  ";
+    $sql21 = "DELETE from tb_reserve where rs_id = '$rs_id' and rs_amount ='0'  ";
     $sql22 = "UPDATE tb_item_detail SET itd_item_sts = 'a' WHERE itd_item_sts = 'rs' AND itd_item_name = '".$item_name."' LIMIT 1";
     $sql23 = "UPDATE tb_cate_item SET ith_avalible = ith_avalible + '1' WHERE item_id = '".$item_id."';";
+    $sql4 = "UPDATE tb_user SET user_limit = user_limit + '1' WHERE user_id = '$idd'";
     $cls_conn->write_base($sql21);
     $cls_conn->write_base($sql22);
     $cls_conn->write_base($sql23);
+    $cls_conn->write_base($sql4);
     echo $cls_conn->goto_page(1, 'conclude.php');
 }
 ?>
@@ -171,6 +182,7 @@ if(isset($_POST['delete'])){
 <form method="post">
 
     <div  class="container row">
+
     <button type="submit" style="margin-left: 31% ; width: 50%; " name="submit" class="btn btn-primary display-4" >Reserve</button>
     </div><br>
     <!-- <div  class="container row">
@@ -180,30 +192,41 @@ if(isset($_POST['delete'])){
 </form>
     <?php 
     if(isset($_POST['submit'])){
-
-        $rndno=rand(100000, 999999);//OTP generate
-        $message = urlencode("otp number.".$rndno);
-        $to="$user_email";
-        $subject = "OTP";
-        $txt = "OTP: ".$rndno."";
-        $headers = "From: cieonkmitl@gmail.com" . "\r\n" .
-        "CC: divyasundarsahu@gmail.com";
-        mail($to,$subject,$txt,$headers);
-        if(isset($_POST['submitt']))
+        $sql = "SELECT * FROM `tb_reserve` WHERE user_id = '$idd' AND rs_flag = 'o'";
+        $sql = mysqli_fetch_array($cls_conn->select_base($sql));
+        if($sql['rs_id'])
         {
-        // $_SESSION['otp']=$rndno;
-        // echo $rndno;
-        }
+            $rndno=rand(100000, 999999);//OTP generate
+            $message = urlencode("otp number.".$rndno);
+            $to="$user_email";
+            $subject = "OTP";
+            $txt = "OTP: ".$rndno."";
+            $headers = "From: cieonkmitl@gmail.com" . "\r\n" .
+            "CC: divyasundarsahu@gmail.com";
+            mail($to,$subject,$txt,$headers);
+            if(isset($_POST['submitt']))
+            {
+            // $_SESSION['otp']=$rndno;
+            // echo $rndno;
+            }
 
-        $sql = " update tb_reserve set rs_otp = '$rndno' where user_id = '$idd' ";
+            $sql = " update tb_reserve set rs_otp = '$rndno' where user_id = '$idd' ";
 
-        if ($cls_conn->write_base($sql) == true) {
-            echo $cls_conn->show_message('Success');
-            echo $cls_conn->goto_page(1, 'logout.php');
-            // echo $sql;
-        } else {
-            echo $cls_conn->show_message('Unsuccess');
+            if ($cls_conn->write_base($sql) == true) {
+
+                echo $cls_conn->show_message('Success');
+                echo '<script>prompt_logout()</script>';
+                // echo $sql;
+            } else {
+                echo $cls_conn->show_message('Unsuccess');
+            }
         }
+        else
+        {
+            echo $cls_conn->show_message('No reservation found');
+            echo $cls_conn->goto_page(1, 'reserve.php');
+        }
+        
     }
     ?>
 </section>

@@ -94,9 +94,9 @@
                             <img src="../../backend/upload/<?= $item_pic ?>" alt="Mobirise">
                         </div>
                     </div>
-                    <form method="post">
+                    <form class="col-lg-6" method="post">
                         <div class="col-12 col-lg">
-                            <div class="text-box">
+                            <div class="text-box col-xs-12">
                                 <h5 class="mbr-title mbr-fonts-style display-2">
                                     <strong><?= $item_name ?></strong>
                                 </h5><br>
@@ -228,7 +228,7 @@
                             $get_item_limit = mysqli_fetch_assoc($cls_conn->select_base($get_item_limit));
                             if($get_item_limit['item_detail_id'])
                             {
-                                $update_reserve = "UPDATE tb_item_detail SET itd_item_sts = 'rs' WHERE  itd_item_name = '".$item_name."' LIMIT ".$num.";";
+                                $update_reserve = "UPDATE tb_item_detail SET itd_item_sts = 'rs' WHERE itd_item_sts = 'a' AND itd_item_name = '".$item_name."' LIMIT ".$num.";";
                                 $cls_conn->select_base($update_reserve);
                             }
                             else
@@ -277,26 +277,26 @@
                 <?php
                 // echo $item_name;
                 $sql = " SELECT
- tb_cate_item.item_id,
- tb_cate_item.locker_no,
- tb_cate_item.ith_cate_type,
- tb_cate_item.ith_amount,
- tb_cate_item.ith_avalible,
- tb_cate_item.ith_date,
- tb_item_detail.item_detail_id,
- tb_item_detail.rfid_tag,
- tb_item_detail.locker_no,
- tb_item_detail.item_id,
- tb_item_detail.itd_cate_type,
- tb_item_detail.itd_item_name,
- tb_item_detail.itd_item_pic,
- tb_item_detail.itd_item_sts,
- tb_item_detail.itd_boxno
- FROM
- tb_cate_item
- INNER JOIN tb_item_detail ON tb_cate_item.item_id = tb_item_detail.item_id AND tb_cate_item.ith_cate_type = tb_item_detail.itd_cate_type
- where tb_item_detail.itd_item_name != '$item_name' and  tb_item_detail.itd_cate_type = '$itd_cate_type' 
- GROUP by tb_item_detail.itd_item_name";
+                    tb_cate_item.item_id,
+                    tb_cate_item.locker_no,
+                    tb_cate_item.ith_cate_type,
+                    tb_cate_item.ith_amount,
+                    tb_cate_item.ith_avalible,
+                    tb_cate_item.ith_date,
+                    tb_item_detail.item_detail_id,
+                    tb_item_detail.rfid_tag,
+                    tb_item_detail.locker_no,
+                    tb_item_detail.item_id,
+                    tb_item_detail.itd_cate_type,
+                    tb_item_detail.itd_item_name,
+                    tb_item_detail.itd_item_pic,
+                    tb_item_detail.itd_item_sts,
+                    tb_item_detail.itd_boxno
+                    FROM
+                    tb_cate_item
+                    INNER JOIN tb_item_detail ON tb_cate_item.item_id = tb_item_detail.item_id AND tb_cate_item.ith_cate_type = tb_item_detail.itd_cate_type
+                    where tb_item_detail.itd_item_name != '$item_name' and  tb_item_detail.itd_cate_type = '$itd_cate_type' AND tb_item_detail.itd_item_sts = 'a'
+                    GROUP by tb_item_detail.itd_item_name";
                 $result = $cls_conn->select_base($sql);
                 while ($row = mysqli_fetch_array($result)) {
                     $product_qty = $row['ith_avalible'];

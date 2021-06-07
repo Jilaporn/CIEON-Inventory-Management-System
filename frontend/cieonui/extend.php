@@ -33,7 +33,16 @@
 
 <body>
     <?php include('headernocart.php'); ?>
-
+<script>
+    function prompt_logout() {
+        var r = confirm("Do you want to continue?");
+        if (r == true) {
+            window.location = "index.php";
+        } else {
+            window.location = "logout.php";
+        }
+    }
+</script>
 <section class="engine"><a href="https://mobirise.info/d">web maker</a></section><section class="features15 cid-spwNsx934l" id="features16-1h">   
     <div class="container">
         <div class="content-wrapper">
@@ -208,7 +217,7 @@
                 $sql1 .= " act_id='$act_id'";
                 $cls_conn->write_base($sql1) == true;
                 echo $cls_conn->show_message('Success');
-                echo $cls_conn->goto_page(1, 'logout.php');
+                echo '<script>prompt_logout()</script>';
             }
         }
         ?>

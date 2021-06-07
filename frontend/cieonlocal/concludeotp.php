@@ -131,6 +131,7 @@ $datedate = date ("Y-m-d", strtotime("+1 day", strtotime($rs_date)));
                                         <strong><?=$item_name?></strong></h6>
                                         <input type="hidden" name="rs_item_name[]" value="<?=$row['rs_item_name']?>" />
                                     <p class="mbr-text mbr-fonts-style display-7"> Return before: <?= $row['act_exp_date'] ?></p>
+                                    <p class="mbr-text mbr-fonts-style display-8" style="color: red"> *Return date is 7 day after user borrow items</p>
                                     <p class="mbr-text mbr-fonts-style display-7"> Locker no: <?= $row['locker_no'] ?></p>
                                    
                                 </div>
