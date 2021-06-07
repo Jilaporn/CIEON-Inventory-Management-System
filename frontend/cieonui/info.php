@@ -186,7 +186,7 @@
                         } elseif ($num > $count) {
                             echo $cls_conn->show_message('Reserve over amount');
                         } elseif (0 > $alllimit) {
-                            echo $cls_conn->show_message('Reseve over limit');
+                            echo $cls_conn->show_message('Reserve limit amount has been reached');
                         } else {
 
                            

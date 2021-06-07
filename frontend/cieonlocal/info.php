@@ -163,7 +163,7 @@
                         } elseif ($num > $count) {
                             echo $cls_conn->show_message('Overbooked');
                         } elseif (0 > $alllimit) {
-                            echo $cls_conn->show_message('Borrow over limit');
+                            echo $cls_conn->show_message('Borrow limit amount has been reached');
                         } else {
 
                             
