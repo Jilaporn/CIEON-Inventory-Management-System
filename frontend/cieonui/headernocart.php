@@ -240,7 +240,7 @@ if (isset($_SESSION['student'])) {
             <div class="container">
                 <div class="navbar-brand">
                     <span class="navbar-logo">
-                        <a href="https://mobiri.se">
+                        <a href="index.php">
                             <img src="assets/images/cieon-121x121.png" alt="Mobirise" style="height: 3.8rem;">
                         </a>
                     </span>
