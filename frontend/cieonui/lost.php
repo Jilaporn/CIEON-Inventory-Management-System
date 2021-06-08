@@ -28,29 +28,30 @@
 </head>
 
 <body>
-<?php include('headernocart.php'); ?>
-    <section class="content6 cid-spwNB2vPqI" id="content6-1k">
-    <section class="engine"><a href="https://mobirise.info/d">web maker</a></section><section class="features15 cid-spwNsx934l" id="features16-1h">   
-    <div class="container">
-        <div class="content-wrapper">
-            <div class="row align-items-center">
-                <div class="col-12 col-lg">
-                    <div class="text-wrapper">
-                        <h6 class="card-title mbr-fonts-style display-2"><strong>Lost</strong></h6>
-                        <p class="mbr-text mbr-fonts-style mb-4 display-4">
-                        User can declare the items and quantity of items that they lost through website. However, those user will receive a penalty and cannot use the system until the admin edit their penalty status.</p>
+    <?php include('headernocart.php'); ?>
+
+    <section class="engine"><a href="https://mobirise.info/d">web maker</a></section>
+    <section class="features15 cid-spwNsx934l" id="features16-1h">
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="row align-items-center">
+                    <div class="col-12 col-lg">
+                        <div class="text-wrapper">
+                            <h6 class="card-title mbr-fonts-style display-2"><strong>Lost</strong></h6>
+                            <p class="mbr-text mbr-fonts-style mb-4 display-4">
+                                User can declare the items and quantity of items that they lost through website. However, those user will receive a penalty and cannot use the system until the admin edit their penalty status.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 col-lg-6">
-                    <div class="image-wrapper">
-                        <img src="assets/images/lost.jpg" alt="Mobirise">
+                    <div class="col-12 col-lg-6">
+                        <div class="image-wrapper">
+                            <img src="assets/images/lost.jpg" alt="Mobirise">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section> 
-
+    </section>
+    <section class="content6 cid-spwNB2vPqI" id="content6-1k">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-10">
@@ -65,6 +66,8 @@
     </section>
     <section class="features8 cid-spwNxYQxed" xmlns="http://www.w3.org/1999/html" id="features9-1i">
         <div class="container">
+        <div class="card">
+                <div class="card-wrapper">
             <?php
             $idd = $_SESSION['user_id'];
             $sql = "SELECT
@@ -209,60 +212,19 @@
             $cls_conn->write_base($sql2) == true;
             $cls_conn->write_base($sql3) == true;
             echo $cls_conn->show_message('Success');
-                            if ($_POST['submit'] == 'out') {
-                                echo $cls_conn->goto_page(1, 'logout.php');
-                            } else {
-                                echo $cls_conn->goto_page(1, 'lost.php');
-                            }
-                        }
-        
+            if ($_POST['submit'] == 'out') {
+                echo $cls_conn->goto_page(1, 'logout.php');
+            } else {
+                echo $cls_conn->goto_page(1, 'lost.php');
+            }
+        }
+
 
 
         ?>
     </section>
 
-    <section class="content11 cid-spwNySWLqS" id="content11-1j">
-        <!-- <form method="post">
 
-    <div  class="container row">
-    <button type="submit" style="margin-left: 60% ;" name="submit" class="btn btn-primary display-4" >Submit</button>
-    <a class="btn btn-primary display-4" style="margin-left: 2% ;" href="borrow.php">Cancel</a></div>
-    </div>
-  
-</form> -->
-        <!-- <?php
-                //     if(isset($_POST['submit'])){
-
-                //         $rndno=rand(100000, 999999);//OTP generate
-                // $message = urlencode("otp number.".$rndno);
-                // $to=$_POST['email'];
-                // $subject = "OTP";
-                // $txt = "OTP: ".$rndno."";
-                // $headers = "From: otp@studentstutorial.com" . "\r\n" .
-                // "CC: divyasundarsahu@gmail.com";
-                // mail($to,$subject,$txt,$headers);
-                // if(isset($_POST['submitt']))
-                // {
-                // $_SESSION['otp']=$rndno;
-                // // echo $rndno;
-                // }
-
-                //         $sql = " insert into tb_otp(user_id,otp_no)";
-                //         $sql .= " values ('$idd','$rndno')";
-
-                //         if ($cls_conn->write_base($sql) == true) {
-                //             echo $cls_conn->show_message('Success');
-
-
-                //             echo $cls_conn->goto_page(1, 'logout.php');
-                //             // echo $sql;
-                //         } else {
-                //             echo $cls_conn->show_message('Unsuccess');
-                //         }
-                //     }
-                //     
-                ?> -->
-    </section>
 
     <section class="footer3 cid-s48P1Icc8J" once="footers" id="footer3-1g">
 
