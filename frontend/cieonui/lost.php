@@ -28,8 +28,28 @@
 </head>
 
 <body>
-    <?php include('headernocart.php'); ?>
+<?php include('headernocart.php'); ?>
     <section class="content6 cid-spwNB2vPqI" id="content6-1k">
+    <section class="engine"><a href="https://mobirise.info/d">web maker</a></section><section class="features15 cid-spwNsx934l" id="features16-1h">   
+    <div class="container">
+        <div class="content-wrapper">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg">
+                    <div class="text-wrapper">
+                        <h6 class="card-title mbr-fonts-style display-2"><strong>Lost</strong></h6>
+                        <p class="mbr-text mbr-fonts-style mb-4 display-4">
+                        User can declare the items and quantity of items that they lost through website. However, those user will receive a penalty and cannot use the system until the admin edit their penalty status.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="image-wrapper">
+                        <img src="assets/images/lost.jpg" alt="Mobirise">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 
 
         <div class="container">
             <div class="row justify-content-center">
