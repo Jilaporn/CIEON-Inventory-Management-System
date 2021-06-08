@@ -8,7 +8,7 @@
         header('Location: /backend/login.php');
     }
 
-    include('check_otp.php');
+    //include('../cieonlocal/check_otp.php');
 ?>
 <head>
     <!-- Site made with Mobirise Website Builder v5.0.29, https://mobirise.com -->

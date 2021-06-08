@@ -144,6 +144,8 @@ if (isset($_POST['resend'])) {
                                 $cls_conn->write_base($sql4);
                                 $sql3 = "SELECT * from cate_item where item_id = '$item_id'";
                                 $cls_conn->write_base($sql3);
+                                $update_reserve = "UPDATE tb_item_detail SET itd_item_sts = 'a' WHERE itd_item_sts = 'rs' AND itd_item_name = '".$item_name."' LIMIT ".$num.";";
+                                $cls_conn->select_base($update_reserve);
                                 
                                 $delete = "DELETE from tb_reserve where user_id = '$idd' and rs_flag ='o' ";
                                 $cls_conn->write_base($delete);

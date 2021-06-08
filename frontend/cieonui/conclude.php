@@ -166,7 +166,7 @@ if(isset($_POST['delete'])){
     // echo $rs_id; 
     if ($_SESSION['student']) {
     $sql ="DELETE from tb_activity where user_id = '$idd' and act_type ='rs' and act_item_name ='$item_name' and act_flag ='o' limit 1 ";
-    $sql1 = "UPDATE tb_reserve SET rs_amount = rs_amount -'1' WHERE rs_item_name = '".$item_name."' LIMIT 1;";
+    $sql1 = "UPDATE tb_reserve SET rs_amount = rs_amount -'1' WHERE rs_item_name = '".$item_name."' and rs_otp ='0' LIMIT 1;";
     $cls_conn->write_base($sql);
     $cls_conn->write_base($sql1);
     $sql21 = "DELETE from tb_reserve where rs_id = '$rs_id' and rs_amount <='0'  ";
@@ -182,7 +182,7 @@ if(isset($_POST['delete'])){
 
 elseif($_SESSION['teacher']){
         $sql ="DELETE from tb_activity where user_id = '$idd' and act_type ='rs' and act_item_name ='$item_name' and act_flag ='o' limit 1 ";
-        $sql1 = "UPDATE tb_reserve SET rs_amount = rs_amount -'1' WHERE rs_item_name = '".$item_name."' LIMIT 1;";
+        $sql1 = "UPDATE tb_reserve SET rs_amount = rs_amount -'1' WHERE rs_item_name = '".$item_name."' and rs_otp ='0' LIMIT 1;";
         $cls_conn->write_base($sql);
         $cls_conn->write_base($sql1);
         $sql21 = "DELETE from tb_reserve where rs_id = '$rs_id' and rs_amount <='0'  ";

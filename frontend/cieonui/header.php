@@ -6,7 +6,7 @@
 if (!$_SESSION['user_id'] && ($_SERVER['REQUEST_URI'] != '/frontend/cieonui/index.php')) {
     header('Location: /backend/login.php');
 }
-include('../cieonlocal/check_otp.php');
+//include('../cieonlocal/check_otp.php');
 
 ?>
 
@@ -341,7 +341,7 @@ if ($_SESSION['student']) {
         tb_reserve.rs_item_name
         FROM
         tb_reserve
-        where  tb_reserve.user_id = '$idd' and tb_reserve.rs_flag ='o'
+        where  tb_reserve.user_id = '$idd' and tb_reserve.rs_flag ='o' and tb_reserve.rs_otp = '0'
         GROUP by tb_reserve.rs_item_name 
         ";
                     // echo $sql;
