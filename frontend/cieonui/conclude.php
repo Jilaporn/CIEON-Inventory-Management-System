@@ -213,7 +213,7 @@ elseif($_SESSION['teacher']){
 </form>
     <?php 
     if(isset($_POST['submit'])){
-        $sql = "SELECT * FROM `tb_reserve` WHERE user_id = '$idd' AND rs_flag = 'o'";
+        $sql = "SELECT * FROM `tb_reserve` WHERE user_id = '$idd' AND rs_flag = 'o' and rs_otp = '0'";
         $sql = mysqli_fetch_array($cls_conn->select_base($sql));
         if($sql['rs_id'])
         {

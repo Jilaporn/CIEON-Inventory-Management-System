@@ -5,7 +5,7 @@
 if (!$_SESSION['user_id'] && ($_SERVER['REQUEST_URI'] != '/frontend/cieonlocal/index.php')) {
     header('Location: /frontend/cieonlocal/login.php');
 }
-//include('check_otp.php');
+include('check_otp.php');
 ?>
 
 <head>

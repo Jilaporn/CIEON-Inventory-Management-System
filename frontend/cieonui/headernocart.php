@@ -8,7 +8,7 @@
         header('Location: /backend/login.php');
     }
 
-    //include('../cieonlocal/check_otp.php');
+    include('check_otp.php');
 ?>
 <head>
     <!-- Site made with Mobirise Website Builder v5.0.29, https://mobirise.com -->
@@ -89,7 +89,7 @@ if (isset($_SESSION['student'])) {
             <div class="container">
                 <div class="navbar-brand">
                     <span class="navbar-logo">
-                        <a href="https://mobiri.se">
+                        <a href="index.php">
                             <img src="assets/images/cieon-121x121.png" alt="Mobirise" style="height: 3.8rem;">
                         </a>
                     </span>
