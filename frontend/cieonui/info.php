@@ -252,7 +252,7 @@
                                 echo $cls_conn->show_message('Success');
 
 
-                                echo $cls_conn->goto_page(1, 'reserve.php');
+                                echo $cls_conn->goto_page(0, 'reserve.php');
                                 // echo $sql;
                             } else {
                                 echo $cls_conn->show_message('Unsuccess');
