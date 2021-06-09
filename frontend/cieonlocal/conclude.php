@@ -220,7 +220,7 @@ if(isset($_POST['delete'])){
 </form>
 <?php 
     if(isset($_POST['submit'])){
-        $sql = "SELECT * FROM `tb_activity` WHERE user_id = '$idd' AND act_type = 'b' AND rs_flag = 'o'";
+        $sql = "SELECT * FROM `tb_activity` WHERE user_id = '$idd' AND act_type = 'b' AND act_flag = 'o'";
         $sql = mysqli_fetch_array($cls_conn->select_base($sql));
         if($sql['act_id'])
         {

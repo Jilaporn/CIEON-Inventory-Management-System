@@ -213,7 +213,7 @@
                             }
                             else
                             {
-                                echo $cls_conn->show_message('Sorry! Item you want to reserve is now run out!');
+                                echo $cls_conn->show_message('Sorry! Item you want to borrow is now run out!');
                             }
 
 
