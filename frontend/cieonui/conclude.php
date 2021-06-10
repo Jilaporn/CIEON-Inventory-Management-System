@@ -388,7 +388,17 @@ where  tb_reserve.user_id = '$idd' AND rs_otp = '0'  ";
             <div class="container row">
 
                 <button type="submit" style="margin-left: 31% ; width: 50%; " name="submit" class="btn btn-primary display-4">Reserve</button>
+
             </div><br>
+
+            <div class="container row">
+
+                <a  style="margin-left: 31% ; width: 50%; " class="btn btn-primary display-4" href ='reserve.php'>Back</a>
+
+            </div><br>
+
+
+
             <!-- <div  class="container row">
     <a class="btn btn-primary display-4" style="margin-left: 31% ; width: 50% ;" href="reserve.php">Cancel</a></div>
     </div> -->
