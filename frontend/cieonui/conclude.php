@@ -33,7 +33,7 @@
 
     <script>
         function prompt_logout() {
-            var r = confirm("Do you want to continue?");
+            var r = confirm("Do you want to proceed?");
             if (r == true) {
                 window.location = "index.php";
             } else {
@@ -310,11 +310,11 @@ where  tb_reserve.user_id = '$idd' AND rs_otp = '0'  ";
         $allavalible = $ith_avalible - 1;
         // echo $alllimit ;
         if (1 > $ith_avalible) {
-            echo $cls_conn->show_message('Sorry! Item you want to reserve is now run out!');
+            echo $cls_conn->show_message('Unfortunately, the following item that you reserve are now out-of-stock.');
         } elseif (1 > $all) {
-            echo $cls_conn->show_message('Sorry! Item you want to reserve is now run out!');
+            echo $cls_conn->show_message('Unfortunately, the following item that you reserve are now out-of-stock.');
         } elseif (0 > $alllimit) {
-            echo $cls_conn->show_message('Reserve limit amount has been reached');
+            echo $cls_conn->show_message('Reserve limit amount has been reached.');
         } else {
 
 
@@ -375,7 +375,7 @@ where  tb_reserve.user_id = '$idd' AND rs_otp = '0'  ";
                     echo $cls_conn->show_message('Unsuccess');
                 }
             } else {
-                echo $cls_conn->show_message('Sorry! Item you want to reserve is now run out!');
+                echo $cls_conn->show_message('Unfortunately, the following item that you reserve are now out-of-stock.');
             }
         }
     }
@@ -414,8 +414,8 @@ where  tb_reserve.user_id = '$idd' AND rs_otp = '0'  ";
                 $message = urlencode("otp number." . $rndno);
                 $to = " user <$user_email>";
                 $subject = "OTP";
-                $txt = "OTP: " . $rndno . "";
-                $headers = "From: <ftp@cieinventory.ga>" . "\r\n" . "Reply-To:$user_email " .
+                $txt = "OTP: " . $rndno . ""."Please use this OTP to get items from the locker";
+                $headers = "From: cieonkmitl <ftp@cieinventory.ga>" . "\r\n" . "Reply-To:$user_email " .
                     "CC: cieonkmitl <cieonkmitl@gmail.com>";
                 mail($to, $subject, $txt, $headers);
                 if (isset($_POST['submitt'])) {

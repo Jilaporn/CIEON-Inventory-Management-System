@@ -226,7 +226,7 @@ $datedate = date ("Y-m-d", strtotime("+1 day", strtotime($rs_date)));
             }
             $to="user <$user_email>";
             $subject = "Borrowed List";
-            $headers = "From: <ftp@cieinventory.ga>" . "\r\n" ."Reply-To:$user_email ".
+            $headers = "From: cieonkmitl <ftp@cieinventory.ga>" . "\r\n" ."Reply-To:$user_email ".
             "CC: cieonkmitl <cieonkmitl@gmail.com>";
             mail($to,$subject,$txt,$headers);
 

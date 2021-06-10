@@ -332,9 +332,9 @@ where  tb_activity.user_id = '$idd' AND rfid_tag = '0' and act_flag ='o' ";
             $allavalible = $ith_avalible - 1;
             // echo $alllimit ;
             if (1 > $ith_avalible) {
-                echo $cls_conn->show_message('Sorry! Item you want to borrow is now run out!');
+                echo $cls_conn->show_message('Unfortunately, the following item that you borrow are now out-of-stock.');
             } elseif (1 > $all) {
-                echo $cls_conn->show_message('Sorry! Item you want to borrow is now run out!');
+                echo $cls_conn->show_message('Unfortunately, the following item that you borrow are now out-of-stock.');
             } elseif (0 > $alllimit) {
                 echo $cls_conn->show_message('Borrow limit amount has been reached');
             } else {
@@ -393,7 +393,7 @@ where  tb_activity.user_id = '$idd' AND rfid_tag = '0' and act_flag ='o' ";
                         echo $cls_conn->show_message('Unsuccess');
                     }
                 } else {
-                    echo $cls_conn->show_message('Sorry! Item you want to borrow is now run out!');
+                    echo $cls_conn->show_message('Unfortunately, the following item that you borrow are now out-of-stock.');
                 }
             }
         }
@@ -453,7 +453,7 @@ where  tb_activity.user_id = '$idd' AND rfid_tag = '0' and act_flag ='o' ";
                     }
                     $to = "user <$user_email>";
                     $subject = "Borrowed List";
-                    $headers = "From: <ftp@cieinventory.ga>" . "\r\n" . "Reply-To:$user_email " .
+                    $headers = "From: <cieonkmitl@gmail.com>" . "\r\n" . "Reply-To:$user_email " .
                         "CC: cieonkmitl <cieonkmitl@gmail.com>";
                     mail($to, $subject, $txt, $headers);
                     if ($cls_conn->write_base($sql) == true) {
@@ -510,7 +510,7 @@ where  tb_activity.user_id = '$idd' AND rfid_tag = '0' and act_flag ='o' ";
                                 $to = "user <$user_email>";
                                 $subject = "Borrowed List";
                                 $txt .= "Lists :" . $row['act_item_name'] . "\nAmount :" . $row['count(tb_activity.act_item_name)'] . "\nReturn date:" . $row['act_exp_date'] . '\n';
-                                $headers = "From: <ftp@cieinventory.ga>" . "\r\n" . "Reply-To:$user_email " .
+                                $headers = "From: cieonkmitl <ftp@cieinventory.ga>" . "\r\n" . "Reply-To:$user_email " .
                                     "CC: cieonkmitl <cieonkmitl@gmail.com>";
                                 mail($to, $subject, $txt, $headers);
                             }
