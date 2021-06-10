@@ -268,7 +268,7 @@
  FROM
  tb_cate_item
  INNER JOIN tb_item_detail ON tb_cate_item.item_id = tb_item_detail.item_id AND tb_cate_item.ith_cate_type = tb_item_detail.itd_cate_type
- where tb_item_detail.itd_item_name != '$item_name' and  tb_item_detail.itd_cate_type = '$item_type' 
+ where tb_item_detail.itd_item_name != '$item_name' and  tb_item_detail.itd_cate_type = '$item_type' and tb_item_detail.itd_item_sts ='a'
  GROUP by tb_item_detail.itd_item_name";
                 $result = $cls_conn->select_base($sql);
                 while ($row = mysqli_fetch_array($result)) {

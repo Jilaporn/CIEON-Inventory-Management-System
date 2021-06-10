@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="assets/theme/css/style.css">
     <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css">
     <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -84,10 +85,13 @@
 
     <section class="features8 cid-spwNxYQxed" xmlns="http://www.w3.org/1999/html" id="features9-1i">
         <form method="POST" style="margin-left: 75%;">
-            <button onclick="return confirm('Do you want to edit?')" type="submit" name="deleteall2" value="<?= $row['rs_id'] ?>" class="btn  display-4">
+            <button onclick="return confirm('Do you want to delete all items?')" type="submit" name="deleteall2" value="<?= $row['rs_id'] ?>" class="btn  display-4">
                 <img src="outline_delete_forever_black_24dp.png" width="20%">
+
             </button>
-            <h4>Delete all</h4>
+            <a>Delete all items</a>
+            <br>
+            <br>
         </form>
 
         <div class="container">
@@ -126,7 +130,7 @@
 
                     $sql223 = "UPDATE tb_item_detail SET itd_item_sts = 'a' WHERE itd_item_sts = 'rs' AND itd_item_name = '" . $item_name . "'";
                     $cls_conn->write_base($sql223);
-                    
+
                     //echo $sql223;
                     // echo 'ddd';
 
@@ -140,39 +144,39 @@
                                     <img src="../../backend/upload/<?= $row['rs_pic'] ?>" alt="">
                                 </div>
                             </div>
-                            <div class="col-12 col-md">
-                                <div class="card-box">
+                            <div class=" col-md-8">
 
-                                    <div class="row">
-                                        <div class="col-md">
-                                            <h6 class="card-title mbr-fonts-style display-5">
-                                                <strong><?= $row['rs_item_name'] ?></strong>
-                                            </h6>
-                                            <p class="mbr-text mbr-fonts-style display-7"> Pick up before: <?= $datedate ?></p>
-                                            <p class="mbr-text mbr-fonts-style display-8" style="color: red"> * Item must be picked in one day after it has been reserved. </p>
-                                        </div>
-                                        <form method="post">
-                                            <div class="col-md-auto">
-                                                <p class="price mbr-fonts-style display-2">Amount: <?= $all ?></p>
-                                                <div class="row">
-                                                    <button type="submit" name="delete" style="margin-left: 5%;" value="<?= $row['rs_id'] ?>" class="btn btn-primary display-4">---</button>
-                                                    <button type="submit" name="create" style="margin-left: 5%;" value="<?= $row['rs_id'] ?>" class="btn btn-primary display-4">+</button>
-                                                    <button onclick="return confirm('Do you want to edit?')" type="submit" name="deleteall" value="<?= $row['rs_id'] ?>" class="btn  display-4">
-                                                        <img src="outline_delete_black_24dp.png" width="10%">
-                                                    </button>
-                                                    <input type="hidden" name="all" value="<?= $all ?>">
-                                                    <input type="hidden" name="item_id" value="<?= $item_id ?>">
-                                                    <input type="hidden" name="item_name" value="<?= $item_name ?>">
-                                                    <input type="hidden" name="rs_amount" value="<?= $amount ?>">
-                                                    <input type="hidden" name="pic" value="<?= $row['rs_pic'] ?>">
-                                                    <input type="hidden" name="cate_type" value="<?= $row['cate_type'] ?>">
-                                                    <input type="hidden" name="lockerno" value="<?= $row['locker_no'] ?>">
-                                                </div>
-                                                <!-- <div class="mbr-section-btn"><a href="https://mobiri.se" class="btn btn-primary display-4"><span class="mobi-mbri mobi-mbri-plus mbr-iconfont mbr-iconfont-btn"></span>0</a></div> -->
-                                            </div>
-                                        </form>
-                                        <div></div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h6 class="card-title mbr-fonts-style display-5">
+                                            <strong><?= $row['rs_item_name'] ?></strong>
+                                        </h6>
+                                        <p class="mbr-text mbr-fonts-style display-7"> Pick up before: <?= $datedate ?></p>
+                                        <p class="mbr-text mbr-fonts-style display-8" style="color: red"> * Item must be picked in one day after it has been reserved. </p>
                                     </div>
+
+                                    <div class="col-md-6">
+
+                                        <p class="price mbr-fonts-style display-2">Amount: <?= $all ?></p>
+
+                                        <form method="post">
+                                            <div class="row">
+                                                <button type="submit" name="delete" style="margin-left: 1%;" value="<?= $row['rs_id'] ?>" class="btn btn-primary display-4">---</button>
+                                                <button type="submit" name="create" style="margin-left: 1%;" value="<?= $row['rs_id'] ?>" class="btn btn-primary display-4">+</button>
+                                                <button onclick="return confirm('Do you want to delete this items?')" type="submit" style="margin-left: 1%;" name="deleteall" value="<?= $row['rs_id'] ?>" class="btn btn-primary display-4">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>&nbspDelete items
+                                                </button>
+                                                <input type="hidden" name="all" value="<?= $all ?>">
+                                                <input type="hidden" name="item_id" value="<?= $item_id ?>">
+                                                <input type="hidden" name="item_name" value="<?= $item_name ?>">
+                                                <input type="hidden" name="rs_amount" value="<?= $amount ?>">
+                                                <input type="hidden" name="pic" value="<?= $row['rs_pic'] ?>">
+                                                <input type="hidden" name="cate_type" value="<?= $row['cate_type'] ?>">
+                                                <input type="hidden" name="lockerno" value="<?= $row['locker_no'] ?>">
+                                            </div>
+                                            <!-- <div class="mbr-section-btn"><a href="https://mobiri.se" class="btn btn-primary display-4"><span class="mobi-mbri mobi-mbri-plus mbr-iconfont mbr-iconfont-btn"></span>0</a></div> -->
+                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -203,7 +207,7 @@ where  tb_reserve.user_id = '$idd' AND rs_otp = '0'  ";
     <?php
     // echo $_SESSION['student'];
     // echo $_SESSION['teacher'];
-    if (isset($_POST['deleteall'])){
+    if (isset($_POST['deleteall'])) {
         $rs_id = $_POST['delete'];
         $item_id = $_POST['item_id'];
         $item_name = $_POST['item_name'];
@@ -217,7 +221,7 @@ where  tb_reserve.user_id = '$idd' AND rs_otp = '0'  ";
             // echo 'ddddd';
             $sql22 = "UPDATE tb_item_detail SET itd_item_sts = 'a' WHERE itd_item_sts = 'rs' AND itd_item_name = '$item_name' ";
             $sql23 = "UPDATE tb_cate_item SET ith_avalible = ith_avalible + '$rs_amount' WHERE item_id = '$item_id' ";
-            $sql4 = "UPDATE tb_user SET user_limit = user_limit + '$rs_amount' WHERE user_id = '$idd' ";
+            $sql4 = "UPDATE tb_user SET user_limit = user_limit + '$rs_amount' WHERE user_id = '$idd' and user_limit < 10 ";
             $cls_conn->write_base($sql21);
             $cls_conn->write_base($sql22);
             $cls_conn->write_base($sql23);
@@ -225,12 +229,13 @@ where  tb_reserve.user_id = '$idd' AND rs_otp = '0'  ";
             echo $cls_conn->goto_page(0, 'conclude.php');
         } elseif ($_SESSION['teacher']) {
             $sql = "DELETE from tb_activity where user_id = '$idd' and act_type ='rs' and act_item_name ='$item_name' and act_flag ='o'  ";
+            $sql1 = "DELETE from tb_reserve where rs_item_name = '" . $item_name . "' and rs_otp ='0' ;";
             $cls_conn->write_base($sql);
             $cls_conn->write_base($sql1);
-            $sql21 = "DELETE from tb_reserve where rs_id = '$rs_id' and rs_amount <='0'  ";
-            $sql22 = "UPDATE tb_item_detail SET itd_item_sts = 'a' WHERE itd_item_sts = 'rs' AND itd_item_name = '" . $item_name . "' ";
-            $sql23 = "UPDATE tb_cate_item SET ith_avalible = ith_avalible + '1' WHERE item_id = '" . $item_id . "';";
-            $sql4 = "UPDATE tb_user SET user_limit = user_limit + '1' WHERE user_id = '$idd' and user_limit <'20' ";
+            // echo 'ddddd';
+            $sql22 = "UPDATE tb_item_detail SET itd_item_sts = 'a' WHERE itd_item_sts = 'rs' AND itd_item_name = '$item_name' ";
+            $sql23 = "UPDATE tb_cate_item SET ith_avalible = ith_avalible + '$rs_amount' WHERE item_id = '$item_id' ";
+            $sql4 = "UPDATE tb_user SET user_limit = user_limit + '$rs_amount' WHERE user_id = '$idd' and user_limit < 20 ";
             $cls_conn->write_base($sql21);
             $cls_conn->write_base($sql22);
             $cls_conn->write_base($sql23);
@@ -305,9 +310,9 @@ where  tb_reserve.user_id = '$idd' AND rs_otp = '0'  ";
         $allavalible = $ith_avalible - 1;
         // echo $alllimit ;
         if (1 > $ith_avalible) {
-            echo $cls_conn->show_message('Reserve over amount');
+            echo $cls_conn->show_message('Sorry! Item you want to reserve is now run out!');
         } elseif (1 > $all) {
-            echo $cls_conn->show_message('Reserve over amount');
+            echo $cls_conn->show_message('Sorry! Item you want to reserve is now run out!');
         } elseif (0 > $alllimit) {
             echo $cls_conn->show_message('Reserve limit amount has been reached');
         } else {
