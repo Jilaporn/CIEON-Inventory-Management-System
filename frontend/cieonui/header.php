@@ -231,7 +231,7 @@ if ($_SESSION['student']) {
                 </div>
                 <div class="modal-footer">
                     <a href="conclude.php" class="btn btn-default">Reserve</a>
-                    <a href="index.php" class="btn btn-default">ฺBack</a>
+                    <a href="reserve.php" class="btn btn-default">ฺBack</a>
                 </div>
             </div>
 

@@ -81,7 +81,7 @@
 
         <section class="features8 cid-spwNxYQxed" xmlns="http://www.w3.org/1999/html" id="features9-1i">
             <form method="POST" style="margin-left: 75%;">
-                <button onclick="return confirm('Do you want to edit?')" type="submit" name="deleteall2" value="<?= $row['act_id'] ?>" class="btn  display-4">
+                <button onclick="return confirm('Do you want to delete all items?')" type="submit" name="deleteall2" value="<?= $row['act_id'] ?>" class="btn  display-4">
                     <img src="outline_delete_forever_black_24dp.png" width="20%">
 
                 </button>
@@ -188,8 +188,8 @@
 
                                                     <button type="submit" name="delete" style="margin-left: 1%;" value="<?= $row['act_id'] ?>" class="btn btn-primary display-4">---</button>
                                                     <button type="submit" name="create" style="margin-left: 1%;" value="<?= $row['act_id'] ?>" class="btn btn-primary display-4">+</button>
-                                                    <button onclick="return confirm('Do you want to delete this items?')" type="submit" style="margin-left: 1%;" name="deleteall" value="<?= $row['act_id'] ?>" class="btn btn-primary display-4">
-                                                        <i class="fa fa-trash" aria-hidden="true"></i>&nbspDelete items
+                                                    <button onclick="return confirm('Do you want to delete this item?')" type="submit" style="margin-left: 1%;" name="deleteall" value="<?= $row['act_id'] ?>" class="btn btn-primary display-4">
+                                                        <i class="fa fa-trash" aria-hidden="true"></i>&nbspDelete item
                                                     </button>
                                                     <input type="hidden" name="item_id" value="<?= $item_id ?>">
                                                     <input type="hidden" name="item_name" value="<?= $row['act_item_name'] ?>">
