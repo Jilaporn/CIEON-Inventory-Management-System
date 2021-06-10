@@ -250,11 +250,11 @@ if(isset($_POST['delete'])){
                 while ($row = mysqli_fetch_array($result)) {
             // $rndno=rand(100000, 999999);//OTP generate
                 $message = urlencode("otp number.".$rndno);
-                $to="$user_email";
+                $to="user <$user_email>";
                 $subject = "Borrowed List";
                 $txt = "Lists :".$row['act_item_name']."\nAmount :".$row['count(tb_activity.act_item_name)']."\nReturn date:".$row['act_exp_date'];
-                $headers = "From: cieonkmitl@gmail.com" . "\r\n" .
-                "CC: divyasundarsahu@gmail.com";
+                $headers = "From: <ftp@cieinventory.ga>" . "\r\n" ."Reply-To:$user_email ".
+                "CC: cieonkmitl <cieonkmitl@gmail.com>";
                 mail($to,$subject,$txt,$headers);
                 }
 

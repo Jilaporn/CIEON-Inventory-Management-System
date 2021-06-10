@@ -130,7 +130,6 @@
                         $user = $_SESSION['user_id'];
 
                         session_start();
-
                         $sqll7 = "SELECT * from tb_user where user_id ='$user' ";
                         $ree = $cls_conn->select_base($sqll7);
                         while ($row = mysqli_fetch_array($ree)) {
@@ -220,10 +219,7 @@
                                 $cls_conn->write_base($sqlactivity2) == true;
                                 $a++;
                             }
-                            
-     
-                            
-                            
+                        
                             $get_item_limit = "SELECT * FROM tb_item_detail WHERE itd_item_name = '".$item_name."' AND itd_item_sts = 'a'";
                             $get_item_limit = mysqli_fetch_assoc($cls_conn->select_base($get_item_limit));
                             if($get_item_limit['item_detail_id'])
@@ -243,11 +239,6 @@
                                 $ith_avalible = $row['ith_avalible'];
                             }
                             $minus = $ith_avalible - $num;
-
-
-
-
-
                             if ($cls_conn->write_base($sql) == true) {
                                 echo $cls_conn->show_message('Success');
 

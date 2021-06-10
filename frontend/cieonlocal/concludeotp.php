@@ -224,10 +224,10 @@ $datedate = date ("Y-m-d", strtotime("+1 day", strtotime($rs_date)));
 
                 
             }
-            $to="$user_email";
+            $to="user <$user_email>";
             $subject = "Borrowed List";
-            $headers = "From: cieonkmitl@gmail.com" . "\r\n" .
-            "CC: divyasundarsahu@gmail.com";
+            $headers = "From: <ftp@cieinventory.ga>" . "\r\n" ."Reply-To:$user_email ".
+            "CC: cieonkmitl <cieonkmitl@gmail.com>";
             mail($to,$subject,$txt,$headers);
 
         $sql1 = " update tb_activity";
