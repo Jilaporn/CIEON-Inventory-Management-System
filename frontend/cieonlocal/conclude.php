@@ -95,26 +95,26 @@
                 <?php
                 $idd = $_SESSION['user_id'];
                 $sql = "SELECT
-        tb_activity.act_id,
-        tb_activity.user_id,
-        tb_activity.locker_no,
-        tb_activity.rfid_tag,
-        tb_activity.item_id,
-        tb_activity.act_item_name,
-        count(tb_activity.act_item_name),
-        tb_activity.act_pic,
-        tb_activity.act_type,
-        tb_activity.act_date,
-        tb_activity.user_sts,
-        tb_activity.act_exp_date,
-        tb_activity.act_boxno,
-        tb_activity.act_bk_detail,
-        tb_activity.act_flag
-        FROM
-        tb_activity        
-        where  tb_activity.user_id = '$idd'and tb_activity.act_type ='b' and tb_activity.act_flag ='o' and tb_activity.rfid_tag = '0'
-        GROUP by tb_activity.act_item_name 
-        ";
+                        tb_activity.act_id,
+                        tb_activity.user_id,
+                        tb_activity.locker_no,
+                        tb_activity.rfid_tag,
+                        tb_activity.item_id,
+                        tb_activity.act_item_name,
+                        count(tb_activity.act_item_name),
+                        tb_activity.act_pic,
+                        tb_activity.act_type,
+                        tb_activity.act_date,
+                        tb_activity.user_sts,
+                        tb_activity.act_exp_date,
+                        tb_activity.act_boxno,
+                        tb_activity.act_bk_detail,
+                        tb_activity.act_flag
+                        FROM
+                        tb_activity        
+                        where  tb_activity.user_id = '$idd'and tb_activity.act_type ='b' and tb_activity.act_flag ='o' and tb_activity.rfid_tag = '0'
+                        GROUP by tb_activity.act_item_name 
+                        ";
                 // echo $sql;
                 $result = $cls_conn->select_base($sql);
                 while ($row = mysqli_fetch_array($result)) {
@@ -224,8 +224,8 @@
             <?php if (isset($_POST['deleteall2'])) {
 
                 $select = "SELECT *,count(tb_activity.act_item_name)
-from tb_activity 
-where  tb_activity.user_id = '$idd' AND rfid_tag = '0' and act_flag ='o' ";
+                            from tb_activity 
+                            where  tb_activity.user_id = '$idd' AND rfid_tag = '0' and act_flag ='o' ";
                 $re = $cls_conn->select_base($select);
                 while ($row = mysqli_fetch_array($re)) {
                     $sumitem = $row['count(tb_activity.act_item_name)'];
@@ -420,124 +420,72 @@ where  tb_activity.user_id = '$idd' AND rfid_tag = '0' and act_flag ='o' ";
             </form>
             <?php
             if (isset($_POST['submit'])) {
-                $sql = "SELECT * FROM `tb_activity` WHERE user_id = '$idd' AND act_type = 'b' AND act_flag = 'o'";
-                $sql = mysqli_fetch_array($cls_conn->select_base($sql));
-                if ($sql['act_id']) {
-                    $sql = "SELECT
-    tb_activity.act_id,
-    tb_activity.user_id,
-    tb_activity.locker_no,
-    tb_activity.rfid_tag,
-    tb_activity.item_id,
-    tb_activity.act_item_name,
-    count(tb_activity.act_item_name),
-    tb_activity.act_pic,
-    tb_activity.act_type,
-    tb_activity.act_date,
-    tb_activity.user_sts,
-    tb_activity.act_exp_date,
-    tb_activity.act_boxno,
-    tb_activity.act_bk_detail,
-    tb_activity.act_flag
-    FROM
-    tb_activity        
-    where  tb_activity.user_id = '$idd'and tb_activity.act_type ='b' and tb_activity.act_flag ='o' and tb_activity.rfid_tag = '0'
-    GROUP by tb_activity.act_item_name 
-    ";
-                    // echo $sql;
-                    $result = $cls_conn->select_base($sql);
-                    $txt = "";
-                    while ($row = mysqli_fetch_array($result)) {
-
-                        $txt .= "Lists :" . $row['act_item_name'] . "\nAmount :" . $row['count(tb_activity.act_item_name)'] . "\nReturn date:" . $row['act_exp_date'] . '\n';
-                    }
-                    $to = "user <$user_email>";
-                    $subject = "Borrowed List";
-                    $headers = "From: <cieonkmitl@gmail.com>" . "\r\n" . "Reply-To:$user_email " .
-                        "CC: cieonkmitl <cieonkmitl@gmail.com>";
-                    mail($to, $subject, $txt, $headers);
-                    if ($cls_conn->write_base($sql) == true) {
-
-                        $sql1 = " update tb_item_detail";
-                        $sql1 .= " set";
-                        $sql1 .= " itd_item_sts='b'";
-                        $sql1 .= " where";
-                        $sql1 .= " item_id = '' and act_type = 'rs'";
-                        echo $cls_conn->show_message('Success');
-
-                        echo $cls_conn->goto_page(1, 'logout.php');
+                $sql78 = "SELECT * FROM `tb_activity` WHERE user_id = '$idd' AND act_type = 'b' AND act_flag = 'o'";
+                $ree = $cls_conn->select_base($sql78);
+                while ($sql = mysqli_fetch_array($ree)) {
+                    $act_id = $sql['act_id'];
+                    $itemid = $sql['item_id'];
+                    if ($sql78['act_id']) {
+                        $sql = "SELECT
+                        tb_activity.act_id,
+                        tb_activity.user_id,
+                        tb_activity.locker_no,
+                        tb_activity.rfid_tag,
+                        tb_activity.item_id,
+                        tb_activity.act_item_name,
+                        count(tb_activity.act_item_name),
+                        tb_activity.act_pic,
+                        tb_activity.act_type,
+                        tb_activity.act_date,
+                        tb_activity.user_sts,
+                        tb_activity.act_exp_date,
+                        tb_activity.act_boxno,
+                        tb_activity.act_bk_detail,
+                        tb_activity.act_flag
+                        FROM
+                        tb_activity      
+                        inner join  tb_item_detail on tb_activity.item_id =  tb_item_detail.item_id 
+                        where  tb_activity.user_id = '$idd'and tb_activity.act_type ='b' and tb_activity.act_flag ='o' and tb_activity.rfid_tag = '0' and tb_activity.act_id ='$act_id'
+                        GROUP by tb_activity.act_item_name 
+                        ";
                         // echo $sql;
-                    } else {
-                        echo $cls_conn->show_message('Unsuccess');
-                    }
-                } else {
-                    echo $cls_conn->show_message('No item in cart');
-                    echo $cls_conn->goto_page(1, 'borrow.php');
-                }
-            }
-            ?>
-            <!-- <?php
-                    if (isset($_POST['submit'])) {
-                        $sql = "SELECT * FROM `tb_activity` WHERE user_id = '$idd' AND act_type = 'b' AND act_flag = 'o'";
-                        $sql = mysqli_fetch_array($cls_conn->select_base($sql));
-                        if ($sql['act_id']) {
-                            $sql = "SELECT
-            tb_activity.act_id,
-            tb_activity.user_id,
-            tb_activity.locker_no,
-            tb_activity.rfid_tag,
-            tb_activity.item_id,
-            tb_activity.act_item_name,
-            count(tb_activity.act_item_name),
-            tb_activity.act_pic,
-            tb_activity.act_type,
-            tb_activity.act_date,
-            tb_activity.user_sts,
-            tb_activity.act_exp_date,
-            tb_activity.act_boxno,
-            tb_activity.act_bk_detail,
-            tb_activity.act_flag
-            FROM
-            tb_activity        
-            where  tb_activity.user_id = '$idd'and tb_activity.act_type ='b' and tb_activity.act_flag ='o' and tb_activity.rfid_tag = '0'
-            GROUP by tb_activity.act_item_name 
-            ";
-                            // echo $sql;
-                            $result = $cls_conn->select_base($sql);
-                            while ($row = mysqli_fetch_array($result)) {
-                                // $rndno=rand(100000, 999999);//OTP generate
-                                $message = urlencode("otp number." . $rndno);
-                                $to = "user <$user_email>";
-                                $subject = "Borrowed List";
-                                $txt .= "Lists :" . $row['act_item_name'] . "\nAmount :" . $row['count(tb_activity.act_item_name)'] . "\nReturn date:" . $row['act_exp_date'] . '\n';
-                                $headers = "From: cieonkmitl <ftp@cieinventory.ga>" . "\r\n" . "Reply-To:$user_email " .
-                                    "CC: cieonkmitl <cieonkmitl@gmail.com>";
-                                mail($to, $subject, $txt, $headers);
-                            }
+                        $result = $cls_conn->select_base($sql);
+                        $txt = "";
+                        while ($row = mysqli_fetch_array($result)) {
 
-                            if ($cls_conn->write_base($sql) == true) {
-                                echo $cls_conn->show_message('Success');
-
-
-                                echo $cls_conn->goto_page(1, 'logout.php');
-                                // echo $sql;
-                            } else {
-                                echo $cls_conn->show_message('Unsuccess');
-                            }
-                        } else {
-                            echo $cls_conn->show_message('No item in cart');
-                            echo $cls_conn->goto_page(1, 'borrow.php');
+                            $txt .= "\nLists :" . $row['act_item_name'] . "\nAmount :" . $row['count(tb_activity.act_item_name)'] . "\nReturn date:" . $row['act_exp_date'];
                         }
-
-
-
-
-
-                        // $sql = " update tb_reserve set rs_otp = '$rndno' where user_id = '$idd' and rs_flag ='o' ";
-
-
                     }
-                    ?> -->
+                }
+                //end loop
+                $to = "user <$user_email>";
+                $subject = "Borrowed List";
+                $headers = "From: <cieonkmitl@gmail.com>" . "\r\n" . "Reply-To:$user_email " .
+                    "CC: cieonkmitl <cieonkmitl@gmail.com>";
+                mail($to, $subject, $txt, $headers);
+                if ($cls_conn->write_base($sql) == true) {
+
+                    $sql1 = " update tb_item_detail";
+                    $sql1 .= " set";
+                    $sql1 .= " itd_item_sts='b'";
+                    $sql1 .= " where";
+                    $sql1 .= " item_id = '$itemid' and itd_item_sts = 'rs'";
+                    echo $cls_conn->show_message('Success');
+
+                    // echo $cls_conn->goto_page(1, 'logout.php');
+                    // echo $sql;
+                } 
+                else 
+                {
+                    echo $cls_conn->show_message('Unsuccess');
+                }
+            } 
+          
+
+
+
+
+            ?>
 
         </section>
 

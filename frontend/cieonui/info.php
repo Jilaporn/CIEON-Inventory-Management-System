@@ -181,9 +181,9 @@
                         $allavalible = $ith_avalible - $num;
                         // echo $alllimit ;
                         if ( $num > $ith_avalible) {
-                            echo $cls_conn->show_message('Reserve over amount');
+                            echo $cls_conn->show_message('Unfortunately, the following item that you reserve are now out-of-stock.');
                         } elseif ($num > $count) {
-                            echo $cls_conn->show_message('Reserve over amount');
+                            echo $cls_conn->show_message('Unfortunately, the following item that you reserve are now out-of-stock.');
                         } elseif (0 > $alllimit) {
                             echo $cls_conn->show_message('Reserve limit amount has been reached');
                         } else {
@@ -229,7 +229,7 @@
                             }
                             else
                             {
-                                echo $cls_conn->show_message('Sorry! Item you want to reserve is now run out!');
+                                echo $cls_conn->show_message('Unfortunately, the following item that you reserve are now out-of-stock.');
                             }
                             
                             
