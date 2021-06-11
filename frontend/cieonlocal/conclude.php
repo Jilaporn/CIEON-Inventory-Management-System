@@ -420,11 +420,14 @@
             </form>
             <?php
             if (isset($_POST['submit'])) {
+                $txt = "";
+                $list_item = [];
                 $sql78 = "SELECT * FROM `tb_activity` WHERE user_id = '$idd' AND act_type = 'b' AND act_flag = 'o'";
                 $ree = $cls_conn->select_base($sql78);
                 while ($sql = mysqli_fetch_array($ree)) {
                     $act_id = $sql['act_id'];
                     $itemid = $sql['item_id'];
+                    $itemname = $sql['act_item_name'];
                     if ($sql78['act_id']) {
                         $sql = "SELECT
                         tb_activity.act_id,
@@ -444,18 +447,27 @@
                         tb_activity.act_flag
                         FROM
                         tb_activity      
-                        inner join  tb_item_detail on tb_activity.item_id =  tb_item_detail.item_id 
+                        
                         where  tb_activity.user_id = '$idd'and tb_activity.act_type ='b' and tb_activity.act_flag ='o' and tb_activity.rfid_tag = '0' and tb_activity.act_id ='$act_id'
-                        GROUP by tb_activity.act_item_name 
                         ";
-                        // echo $sql;
+                        // echo $sql.'<br>';
                         $result = $cls_conn->select_base($sql);
-                        $txt = "";
+                        
                         while ($row = mysqli_fetch_array($result)) {
-
+                            
+                        
                             $txt .= "\nLists :" . $row['act_item_name'] . "\nAmount :" . $row['count(tb_activity.act_item_name)'] . "\nReturn date:" . $row['act_exp_date'];
+                            
                         }
+                        // echo $txt.'<br>';
                     }
+                    $sql1 = " update tb_item_detail";
+                    $sql1 .= " set";
+                    $sql1 .= " itd_item_sts='a'";
+                    $sql1 .= " where";
+                    $sql1 .= " item_id = '$itemid' and itd_item_sts = 'rs' and itd_item_name='$itemname' limit 1";
+                    $cls_conn->select_base($sql1);
+                    // echo $sql1.'<br>';
                 }
                 //end loop
                 $to = "user <$user_email>";
@@ -465,14 +477,10 @@
                 mail($to, $subject, $txt, $headers);
                 if ($cls_conn->write_base($sql) == true) {
 
-                    $sql1 = " update tb_item_detail";
-                    $sql1 .= " set";
-                    $sql1 .= " itd_item_sts='b'";
-                    $sql1 .= " where";
-                    $sql1 .= " item_id = '$itemid' and itd_item_sts = 'rs'";
+                    
                     echo $cls_conn->show_message('Success');
 
-                    // echo $cls_conn->goto_page(1, 'logout.php');
+                    echo $cls_conn->goto_page(1, 'logout.php');
                     // echo $sql;
                 } 
                 else 
@@ -480,7 +488,7 @@
                     echo $cls_conn->show_message('Unsuccess');
                 }
             } 
-          
+           
 
 
 
